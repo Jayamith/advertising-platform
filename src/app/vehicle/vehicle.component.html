@@ -1,6 +1,6 @@
-<h2 style="text-align: center;" >Vehicle List</h2>
+<h2 style="text-align: center; font-family: fantasy;" class="mt-4">Vehicle List</h2>
 
-<div>
+<!-- <div>
     <div class="alert alert-success" *ngIf="message">{{message}}</div>
 </div>
 <div class="container">
@@ -19,8 +19,8 @@
             <tr>
                 <td>{{vehicle.vehicleId}}</td>
                 <td>{{vehicle.moreInfo}}</td>
-                <td *ngFor="let v of vehicle.vehicleImages; index as i"><img [src]="v.url" width="100px" height="100px"></td>
-                <td>{{vehicle.postedDate | date | uppercase}}</td>
+                <td *ngFor="let v of vehicle.vehicleImages; index as i"><img [src]="'data:image/png;base64;'+v.url" width="100px" height="100px"></td>
+                <td>{{vehicle.addedDate | date | uppercase}}</td>
                 <td><button class="btn btn-warning" (click)="updateVehicle(vehicle.vehicleId)">Update</button></td>
                 <td><button class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</button></td>
             </tr>
@@ -29,4 +29,59 @@
     <div>
         <button class="btn btn-success" (click)="addVehicle()">Add New</button>
     </div>
+</div> -->
+<div class="container mt-4">
+    <mat-card onclick="getVehicle(vehicle.vehicleId)" *ngFor="let vehicle of vehicles; index as i" style="margin: 10px;">
+        <div class="header-center">
+            <div class="row">
+                <div class="col-6">
+                    <mat-card-header>
+                        <mat-card-title>{{vehicle.vname}} - Rs.{{vehicle.price}}</mat-card-title>
+                        <mat-card-subtitle *ngIf="vehicle.vCondition==='Brand New'" style="color: red;"><b>* {{vehicle.vCondition}}</b></mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="vehicle.vCondition==='Re-Conditioned'" style="color: yellow;"><b>* {{vehicle.vCondition}}</b></mat-card-subtitle>
+                        <img
+                            src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
+                            mat-card-avatar />
+                    </mat-card-header>
+                    <div> Seller : {{vehicle.seller}}</div>
+                    <div> Location : {{vehicle.location}}</div>
+                    <div> Contact No : {{vehicle.contact}}</div>
+                    <div> Posted Date : {{vehicle.addedDate  | date | uppercase}}</div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-card-content *ngFor="let v of vehicle.vehicleImages; index as i">
+                                <img mat-card-image style="width: 150px; padding-top: 10px;" 
+                                 [src]="v.url"
+                                 >
+                            </mat-card-content>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">{{vehicle.moreInfo}}</div>
+                        </div>
+                        <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!-- <button style=" bottom: 5px;position: absolute;"  class="btn btn-primary" (click)="viewVehicle(vehicle.vehicleId)">View</button> -->
+                                    </div>
+                                    <div class="col-4">
+                                        <!-- <button style=" bottom: 5px;position: absolute;" class="btn btn-warning" (click)="updateVehicle(vehicle.vehicleId)">Update</button> -->
+                                    </div>
+                                    <div class="col-4">
+                                        <!-- <button style="margin-left: 14px; bottom: 5px;position: absolute;" class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</button> -->
+                                        <button style=" bottom: 80px;position: absolute;"  class="btn btn-primary" (click)="viewVehicle(vehicle.vehicleId)">View</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </mat-card>
+    <div style="text-align: center;" class="mt-5">
+        <button mat-raised-button color="primary" (click)="addVehicle()">Add New</button>
+    </div>
 </div>
+<!-- </div>src="https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg"  -->

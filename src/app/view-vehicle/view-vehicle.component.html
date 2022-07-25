@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title><h3>{{vehicle.vname}} - Rs.{{vehicle.price}}</h3></mat-card-title>
+            <mat-card-subtitle class="align-content end">{{vehicle.vCondition}}</mat-card-subtitle>
+            <img
+                src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
+                mat-card-avatar />
+        </mat-card-header>
+
+        <mat-card-content class="mt-4" style="margin-left: 55px;">
+            <br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="col-5">
+                    <div> <h5>Fuel : {{vehicle.fuelType}} </h5></div>
+                    <div> <h5>Transmission : {{vehicle.transmission}}</h5></div>
+                    <div> <h5>Manufacturer : {{vehicle.manufacturer}}</h5></div>
+                    <div> <h5>Seller : {{vehicle.seller}} </h5></div>
+                    <div> <h5>Location : {{vehicle.location}}</h5></div>
+                    <div> <h5>Contact No : {{vehicle.contact}}</h5></div>
+                    <div> <h5>Email : <a href="">{{vehicle.email}}</a></h5></div>
+                    <div> <h5>Posted Date : {{vehicle.addedDate  | date | uppercase}}</h5></div>
+                    
+                </div>
+                <div class="col-5">
+                    <div> <h5>{{vehicle.moreInfo}}</h5></div>
+                </div>
+                <div class="col-2">
+                    <div style="bottom: 20px; position: absolute;">
+                        <div class="row">
+                            <button  class="btn btn-warning" (click)="updateVehicle(vehicle.vehicleId)">Update</button>
+                            <button style="margin-top: 20px;" class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</button>
+                        </div>
+                   </div>
+                </div>
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+</div>

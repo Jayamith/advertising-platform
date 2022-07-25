@@ -7,7 +7,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -23,6 +25,7 @@ import { VehicleAddUpComponent } from './vehicle-add-up/vehicle-add-up.component
 import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDirective } from './dir/drag.directive';
+import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { DragDirective } from './dir/drag.directive';
     FooterComponent,
     LogoutComponent,
     VehicleAddUpComponent,
-    DragDirective
+    DragDirective,
+    ViewVehicleComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +53,10 @@ import { DragDirective } from './dir/drag.directive';
     MatIconModule,
     MatInputModule,
     MatCardModule,
-    MatGridListModule
-    
+    MatGridListModule,
+    NgxTypedJsModule,
+    MatSelectModule
+ 
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}

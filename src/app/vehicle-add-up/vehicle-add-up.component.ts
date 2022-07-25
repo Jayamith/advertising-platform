@@ -30,7 +30,7 @@ export class VehicleAddUpComponent implements OnInit {
     manufacturer:'',
     vCondition:'',
     accepted:false,
-    postedDate:new Date(),
+    addedDate:new Date(),
     vehicleImages: []
   };
 
@@ -89,7 +89,7 @@ export class VehicleAddUpComponent implements OnInit {
   saveVehicle(vehicleForm: NgForm){
 
     const vehicleFormData = this.prepareFormData(this.vehicle);
- //   if(this.vehicleId === -1){
+    if(this.vehicleId == -1){
       this.vehicleDataService.createVehicle(vehicleFormData)
         .subscribe(
           (data) => {
@@ -99,15 +99,15 @@ export class VehicleAddUpComponent implements OnInit {
             this.router.navigate(['vehicle']);
           } 
         );
-    // } else {
-    //   this.vehicleDataService.updateVehicle(this.vehicleId,this.vehicle)
-    //     .subscribe(
-    //       data => {
-    //         console.log(data);
-    //         this.router.navigate(['vehicle']);
-    //       }
-    //     )
-    // }
+    } else {
+      this.vehicleDataService.updateVehicle(this.vehicleId,this.vehicle)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.router.navigate(['vehicle']);
+          }
+        )
+    }
   }
 
   removeImage(i:number){

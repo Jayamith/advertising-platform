@@ -13,12 +13,12 @@
             <li><a *ngIf="hardCodedAuthenticationService.isLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
         </ul>
     </nav> -->
-    <mat-toolbar color="primary">
+    <mat-toolbar style="background-color: black;">
         <mat-toolbar-row>
-          <span style="font-size: 36px; color:black; font-family: fantasy;">Ad-Ziy</span>
+          <span style="font-size: 40px;  font-family: fantasy;">Ad-Ziy</span>
           <span class="example-spacer"></span>
           <button *ngIf="!basicAuthenticationService.isLoggedIn()" routerLink="/login"
-           mat-raised-button color="primary" class="example-icon" aria-label="Example icon-button with menu icon">
+           mat-raised-button style="color: black;background-color: cyan;" class="example-icon" aria-label="Example icon-button with menu icon">
             Login
           </button>
           <button *ngIf="basicAuthenticationService.isLoggedIn()" routerLink="/logout"

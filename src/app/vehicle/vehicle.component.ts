@@ -20,7 +20,7 @@ export class Vehicle{
     public manufacturer:string,
     public vCondition:string,
     public accepted:boolean,
-    public postedDate:Date,
+    public addedDate:Date,
     public vehicleImages: FileHandle[]
   ){}
 }
@@ -57,11 +57,11 @@ export class VehicleComponent implements OnInit {
   refreshVehicles(){
     this.vehicleService.getAllVehicles().subscribe(
       response => {
+        console.log(response)
         //console.log(response[0].vehicleImages[0]);
         // let objectUrl = URL.createObjectURL(response[0].vehicleImages[0].file)
         // this.vehicles[0].vehicleImages[0].url = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-        this.vehicles = response;
-        console.log(this.vehicles[0].vehicleImages[0])
+          this.vehicles = response;        
       }
     )
   }
@@ -80,6 +80,10 @@ export class VehicleComponent implements OnInit {
   updateVehicle(vehicleId:any){
     console.log(`update ${vehicleId}`);
     this.router.navigate(['vehicle',vehicleId]);
+  }
+
+  viewVehicle(vehicleId:any){
+    this.router.navigate(['vehicle/view',vehicleId]);
   }
 
   addVehicle(){

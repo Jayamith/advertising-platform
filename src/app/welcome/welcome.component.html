@@ -1,9 +1,20 @@
-<h2>Welcome {{name}}!</h2>
+<!-- <div style="text-align: center;font-size: 140px;" class="mt-5">
+    <span><b>Welcome!</b></span>
+</div> -->
+
 <div class="container">
-    <div>
-        You can continue your listing <a routerLink="/vehicle">here</a>
-    </div>
-    <div>
-        <button class="btn btn-success" (click)="getWelcomeMessage()">Get Welcome</button>
-    </div>
+    <h1>Welcome!</h1>
 </div>
+
+
+  <ngx-typed-js [strings]="['Awesome', 'Amazing']"  [typeSpeed]="200">
+    <div class="container">
+        <h2 style="margin-top: 25px;">We are an <span style="color: green;" class="typing"></span> advertising company!</h2>
+    </div>
+  </ngx-typed-js>
+
+  <ngx-typed-js [strings]="['Vehicle Advertising', 'Spare Part Advertising' , 'Land Property Advertising']" [loop]="true" [typeSpeed]="200">
+    <div class="container">
+        <h2 style="margin-top: 25px;"><span style="color: darkcyan;" class="typing"></span></h2>
+    </div>
+  </ngx-typed-js>
