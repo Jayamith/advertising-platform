@@ -1,0 +1,22 @@
+.form-center{
+    display: flex;
+    text-align: center;
+    justify-content: center; /* align horizontal */
+    align-items: center; 
+}
+
+.header-center{
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; 
+}
+
+.login-card{
+    width: 450px;
+    background-color: grey;
+    color: #000;
+}
+
+mat-form-field.mat-form-field {
+    font-size: 16px;
+}

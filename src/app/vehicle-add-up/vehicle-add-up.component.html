@@ -1,0 +1,184 @@
+<!-- <br>
+<h3>Vehicle</h3>
+<br>
+<div class="alert alert-warning" *ngIf="vehicleForm.dirty && vehicleForm.invalid">Enter Valid Details!</div>
+<div class="alert alert-warning" *ngIf="vehicleForm.dirty && description.invalid">Enter Valid Description!</div>
+<div class="alert alert-warning" *ngIf="vehicleForm.dirty && targetDate.invalid">Enter Valid TargetDate!</div>
+
+<div class="container">
+    <form (ngSubmit)="!vehicleForm.invalid && saveVehicle()" #vehicleForm="ngForm">
+        <fieldset class="form-group">
+            <label>Description</label>
+            <input type="text" #description="ngModel" [(ngModel)]="vehicle.description" 
+                   class="form-control" name="description" 
+                   required="required" minlength="5">
+        </fieldset>
+        <br>
+        <fieldset class="form-group">
+            <label>Target Date</label>
+            <input type="date" #targetDate="ngModel"
+                   [ngModel]="vehicle.targetDate | date:'yyyy-MM-dd'" 
+                   (ngModelChange)="vehicle.targetDate = $event"
+                   class="form-control" name="targetDate" required="required">
+        </fieldset>
+        <br>
+        <fieldset>
+            <button type="submit" class="btn btn-success">Save</button>
+        </fieldset>
+    </form>
+</div> -->
+
+<div class="container mt-4">
+
+    <div class="form-center" fxLayout="row" fxLayoutAlign="center center">
+
+        <mat-card>
+
+            <div class="header-center">
+                <mat-card-header>
+                    <mat-card-title>Vehicle</mat-card-title>
+                </mat-card-header>
+            </div>
+            <div class="alert alert-warning" *ngIf="vehicleForm.dirty && vehicleForm.invalid">Enter Valid Details!</div>
+            <div class="alert alert-warning" *ngIf="vehicleForm.dirty && description.invalid">Enter Valid Description!
+            </div>
+            <!-- <div class="alert alert-warning" *ngIf="vehicleForm.dirty && targetDate.invalid">Enter Valid TargetDate!</div> -->
+
+            <mat-card-content>
+                <form (ngSubmit)="!vehicleForm.invalid && saveVehicle(vehicleForm)" #vehicleForm="ngForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <fieldset class="form-group">
+                                <label>Name</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.vname"
+                                    class="form-control" name="vname" required="required" minlength="5">
+                            </fieldset>
+                            <!-- <br>
+                                <fieldset class="form-group">
+                                    <label>Target Date</label>
+                                    <input type="date" #targetDate="ngModel"
+                                           [ngModel]="vehicle.targetDate | date:'yyyy-MM-dd'" 
+                                           (ngModelChange)="vehicle.targetDate = $event"
+                                           class="form-control" name="targetDate" required="required">
+                                </fieldset> -->
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Model</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.model"
+                                    class="form-control" name="model" required="required" minlength="3">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Condition</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.vCondition"
+                                    class="form-control" name="vCondition" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="form-group">
+                                <label>Fuel Type</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.fuelType"
+                                    class="form-control" name="fuelType" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Transmission</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.transmission"
+                                    class="form-control" name="transmission" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Manufacturer</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.manufacturer"
+                                    class="form-control" name="manufacturer" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="form-group">
+                                <label>Email</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.email"
+                                    class="form-control" name="email" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Contact Number</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.contact"
+                                    class="form-control" name="contact" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Location</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.location"
+                                    class="form-control" name="location" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-4">
+                        
+                            <fieldset class="form-group">
+                                <label>Price</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.price"
+                                    class="form-control" name="price" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Seller</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.seller"
+                                    class="form-control" name="seller" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>More Info</mat-label>
+                                <textarea matInput name="moreInfo" rows="12" [(ngModel)]="vehicle.moreInfo"
+                                    placeholder="Ex. It makes me feel..."></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-8">
+                            <div>
+                                <div class="dropzone"
+                                appDrag
+                                (files) = "fileDropped($event)"
+                                >
+                                    <div class="text-warpper">
+                                        <div class="centered">
+                                            Drag and drop your images 
+                                            or 
+                                            <a (click)="selectFile.click()" class="browse-btn">Browse</a> 
+                                            files
+                                        </div>
+                                    </div>
+                                </div>
+                                <input style="display: none;" type="file" multiple value="select" #selectFile
+                                    (change)="onFileSelected($event)">
+                            </div>
+                            <div class="mt-5">
+                                <div class="row">
+                                    <mat-grid-list cols="4" rowHeight="1:1">
+                                        <mat-grid-tile *ngFor="let v of vehicle.vehicleImages; index as i">
+                                            <div style="position:relative">
+                                                <span class="btn-remove-img" (click)="removeImage(i)">x</span>
+                                                <img [src]="v.url" width="100px" height="100px">
+                                            </div>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="header-center">
+                        <fieldset>
+                            <button type="submit" mat-stroked-button color="accent">Save</button>
+                        </fieldset>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<h2 style="text-align: center;" >Vehicle List</h2>
+
+<div>
+    <div class="alert alert-success" *ngIf="message">{{message}}</div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vehicle ID</th>
+                <th>Vehicle Description</th>
+                <th>Vehice Confirmed</th>
+                <th>Confirmed Date</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let vehicle of vehicles; index as i">
+            <tr>
+                <td>{{vehicle.vehicleId}}</td>
+                <td>{{vehicle.moreInfo}}</td>
+                <td *ngFor="let v of vehicle.vehicleImages; index as i"><img [src]="v.url" width="100px" height="100px"></td>
+                <td>{{vehicle.postedDate | date | uppercase}}</td>
+                <td><button class="btn btn-warning" (click)="updateVehicle(vehicle.vehicleId)">Update</button></td>
+                <td><button class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button class="btn btn-success" (click)="addVehicle()">Add New</button>
+    </div>
+</div>

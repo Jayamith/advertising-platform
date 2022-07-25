@@ -1,0 +1,55 @@
+<header>
+    <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div>
+            <a class="navbar-brand" routerLink="AdZiy">AdZiy</a>
+        </div>
+        <ul class="navbar-nav">
+            <li><a *ngIf="hardCodedAuthenticationService.isLoggedIn()" routerLink="/welcome/home" class="nav-link">Home</a></li>
+            <li><a *ngIf="hardCodedAuthenticationService.isLoggedIn()" routerLink="/vehicle" class="nav-link">Vehicles</a></li>
+        </ul>
+
+        <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li><a *ngIf="!hardCodedAuthenticationService.isLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="hardCodedAuthenticationService.isLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
+        </ul>
+    </nav> -->
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span style="font-size: 36px; color:black; font-family: fantasy;">Ad-Ziy</span>
+          <span class="example-spacer"></span>
+          <button *ngIf="!basicAuthenticationService.isLoggedIn()" routerLink="/login"
+           mat-raised-button color="primary" class="example-icon" aria-label="Example icon-button with menu icon">
+            Login
+          </button>
+          <button *ngIf="basicAuthenticationService.isLoggedIn()" routerLink="/logout"
+           mat-raised-button color="warn" class="example-icon" aria-label="Example icon-button with menu icon">
+            Logout
+          </button>
+        </mat-toolbar-row>
+    
+        <mat-toolbar-row>
+          <span>
+            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/welcome/home" color="accent">Home</button>
+          </span>
+          <span class="left-spacer"></span>
+          <span>
+            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/vehicle" color="accent">Vehicle</button>
+          </span>
+          <span class="left-spacer"></span>
+          <span>
+            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/land" color="accent">Land</button>
+          </span>
+          <span class="left-spacer"></span>
+          <span>
+            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/sparepart" color="accent">Spare Parts</button>
+          </span>
+          <span class="left-spacer"></span>
+          <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+          </button> -->
+        </mat-toolbar-row>
+      </mat-toolbar>
+</header>
