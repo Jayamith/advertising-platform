@@ -28,12 +28,13 @@
     </form>
 </div> -->
 
-<div class="container mt-4">
+<div class="container mt-5">
     <div class="form-center" fxLayout="row" fxLayoutAlign="center center">
-        <mat-card style="background-color: rgb(107, 184, 209); color: black;">
+        <mat-card style="border-radius: 20px; box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;">
             <div class="header-center">
                 <mat-card-header>
-                    <mat-card-title>Vehicle</mat-card-title>
+                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;" *ngIf="vehicle.vehicleId==-1" > <b>Add Vehicle</b></mat-card-title>
+                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;"  *ngIf="vehicle.vehicleId!=-1" > <b>Update Vehicle</b></mat-card-title>
                 </mat-card-header>
             </div>
             <!-- <div class="alert alert-danger" *ngIf="vehicleForm.dirty && vehicleForm.invalid">Enter Valid Details!</div> -->
@@ -111,21 +112,22 @@
                             <fieldset class="form-group">
                                 <label>Manufacturer</label>
                                 <input type="text" #manufacturer="ngModel" [(ngModel)]="vehicle.manufacturer"
-                                    class="form-control" name="manufacturer" required="required" minlength="5">
+                                    class="form-control" name="manufacturer" required="required" minlength="3">
                             </fieldset>
                             <br>
                         </div>
                         <div class="col-4">
                             <fieldset class="form-group">
                                 <label>Email</label>
-                                <input type="text" #email="ngModel" [(ngModel)]="vehicle.email"
-                                    class="form-control" name="email" required="required" minlength="5">
+                                <input type="email" #email="ngModel" required email
+                                    [(ngModel)]="vehicle.email"
+                                    class="form-control" name="email">
                             </fieldset>
                             <br>
                             <fieldset class="form-group">
                                 <label>Contact Number</label>
                                 <input type="text" #contact="ngModel" [(ngModel)]="vehicle.contact"
-                                    class="form-control" name="contact" required="required" minlength="5">
+                                    class="form-control" name="contact" required minlength="10" maxlength="10">
                             </fieldset>
                             <br>
                             <fieldset class="form-group">
@@ -142,7 +144,7 @@
                         <div class="col-4">
                             <div class="row">
                                 <mat-form-field appearance="fill">
-                                    <mat-label style="color: black;">Select Condition</mat-label>
+                                    <mat-label >Select Condition</mat-label>
                                     <mat-select required="required" [(value)]="vehicle.vCondition">
                                       <mat-option>None</mat-option>
                                       <mat-option value="Brand New">Brand New</mat-option>
@@ -151,14 +153,14 @@
                                   </mat-form-field>
                             </div>
                             <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label style="font-size: 20px;color: black;">More Info</mat-label>
-                                <textarea matInput style="color: black;" name="moreInfo" rows="12" [(ngModel)]="vehicle.moreInfo"
+                                <mat-label style="font-size: 20px;">More Info</mat-label>
+                                <textarea matInput name="moreInfo" rows="12" [(ngModel)]="vehicle.moreInfo"
                                     placeholder="Ex. It makes me feel..."></textarea>
                             </mat-form-field>
                             <div class="row">
                                 <mat-form-field appearance="fill">
-                                    <mat-label style="color: black;">Select Transmission</mat-label>
-                                    <mat-select required="required" [(value)]="vehicle.transmission">
+                                    <mat-label >Select Transmission</mat-label>
+                                    <mat-select  required="required" [(value)]="vehicle.transmission">
                                       <mat-option>None</mat-option>
                                       <mat-option value="Auto">Auto</mat-option>
                                       <mat-option value="Manual">Manual</mat-option>
@@ -201,7 +203,7 @@
                     <br>
                     <div class="header-center">
                         <fieldset>
-                            <button type="submit" mat-raised-button color="accent">Save</button>
+                            <button type="submit" [disabled]="!vehicle.transmission || !vehicle.vCondition" mat-raised-button color="accent">Save</button>
                         </fieldset>
                     </div>
                 </form>

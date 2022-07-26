@@ -27,7 +27,7 @@
           </button>
         </mat-toolbar-row>
     
-        <mat-toolbar-row>
+        <mat-toolbar-row *ngIf="basicAuthenticationService.isLoggedIn()">
           <span>
             <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/welcome/home" color="accent">Home</button>
           </span>

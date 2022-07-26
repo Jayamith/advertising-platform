@@ -2,7 +2,7 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title><h3>{{vehicle.vname}} - Rs.{{vehicle.price}}</h3></mat-card-title>
-            <mat-card-subtitle class="align-content end">{{vehicle.vCondition}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="vehicle.vCondition==='Brand New'" style="color: red;" class="align-content end"><b>* {{vehicle.vCondition}}</b></mat-card-subtitle>
             <img
                 src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
                 mat-card-avatar />
@@ -18,7 +18,7 @@
                     <div> <h5>Seller : {{vehicle.seller}} </h5></div>
                     <div> <h5>Location : {{vehicle.location}}</h5></div>
                     <div> <h5>Contact No : {{vehicle.contact}}</h5></div>
-                    <div> <h5>Email : <a href="">{{vehicle.email}}</a></h5></div>
+                    <div> <h5>Email : <a href="vehicle">{{vehicle.email}}</a></h5></div>
                     <div> <h5>Posted Date : {{vehicle.addedDate  | date | uppercase}}</h5></div>
                     
                 </div>

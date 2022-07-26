@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FileHandle } from '../model/file-handle-model';
 import { VehicleDataService } from '../service/data/vehicle-data.service';
 import { Vehicle } from '../vehicle/vehicle.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-vehicle-add-up',
