@@ -13,33 +13,39 @@ import { NgxTypedJsModule } from 'ngx-typed-js';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
-import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
-import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VehicleAddUpComponent } from './vehicle-add-up/vehicle-add-up.component';
-import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
+// import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDirective } from './dir/drag.directive';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { UserDataService } from './service/data/user-data.service';
+import { JwtAuthenticationService } from './service/jwt-authentication.service';
+import { AuthJwtInterceptor } from './service/http/auth-jwt.interceptor';
+import { AuthenticationGuard } from './guard/authentication.guard';
+import { NotificationModule } from './notification.module';
+import { NotificationService } from './service/notification.service';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    LoginComponent,
     ErrorComponent,
     VehicleComponent,
-    MenuComponent,
     FooterComponent,
-    LogoutComponent,
     VehicleAddUpComponent,
     DragDirective,
-    ViewVehicleComponent
+    ViewVehicleComponent,
+    RegisterComponent,
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +62,13 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
     MatCardModule,
     MatGridListModule,
     NgxTypedJsModule,
-    MatSelectModule
- 
+    MatSelectModule,
+    NotificationModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}
+    NotificationService,AuthenticationGuard,UserDataService, JwtAuthenticationService, 
+    {provide: HTTP_INTERCEPTORS, useClass: AuthJwtInterceptor, multi: true}
+    //{provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

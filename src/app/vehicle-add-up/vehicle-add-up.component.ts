@@ -16,6 +16,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class VehicleAddUpComponent implements OnInit {
 
+  registerForm!: FormGroup;
+  submitted = false;
+    
   vehicleId!: number;
   vehicle: Vehicle = {
     vehicleId:0,
@@ -40,10 +43,28 @@ export class VehicleAddUpComponent implements OnInit {
     private vehicleDataService: VehicleDataService,
     private route: ActivatedRoute,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      vname: ['', Validators.required],
+      transmission: ['', Validators.required],
+      location: ['', Validators.required],
+      price: ['', Validators.required],
+      model: ['', Validators.required],
+      seller: ['', Validators.required],
+      contact: ['', Validators.required],
+      fuelType: ['', Validators.required],
+      addedDate: ['', Validators.required],
+      moreInfo: ['', Validators.required],
+      manufacturer: ['', Validators.required],
+      vCondition: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      // password: ['', [Validators.required, Validators.minLength(6)]]
+  });
     this.vehicleId = this.route.snapshot.params['id'];
     console.log(this.vehicleId);
     this.vehicle = new Vehicle(this.vehicleId,' ',' ','','','','','','','','','','',false, new Date(),[]);
@@ -53,6 +74,8 @@ export class VehicleAddUpComponent implements OnInit {
       )
     }
   }
+
+  get f() { return this.registerForm.controls; }
 
   onFileSelected(event:any){
     if(event.target.files){
@@ -65,6 +88,7 @@ export class VehicleAddUpComponent implements OnInit {
         )
       }
 
+      console.log(file)
       this.vehicle.vehicleImages.push(fileHandle);
     }
   }
@@ -89,14 +113,14 @@ export class VehicleAddUpComponent implements OnInit {
   }
 
   saveVehicle(vehicleForm: NgForm){
-
+    this.submitted = true;
     const vehicleFormData = this.prepareFormData(this.vehicle);
     if(this.vehicleId == -1){
       this.vehicleDataService.createVehicle(vehicleFormData)
         .subscribe(
           (data) => {
             console.log(data);
-            vehicleForm.reset();
+            //vehicleForm.reset();
             this.vehicle.vehicleImages = [];
             this.router.navigate(['vehicle']);
           } 

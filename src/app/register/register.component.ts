@@ -9,49 +9,45 @@ import { JwtAuthenticationService } from '../service/jwt-authentication.service'
 import { NotificationService } from '../service/notification.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   private subscriptions:Subscription[] = [];
 
   constructor(
     private router:Router, 
     private jwtAuthenticationService:JwtAuthenticationService,
-    private notificationService:NotificationService) { }
+    private notifier:NotificationService) { }
 
   ngOnInit(): void {
     if(this.jwtAuthenticationService.isLoggedIn()){
       this.router.navigateByUrl('/welcome')
-    } else {
-      this.router.navigateByUrl('/login')
     }
   }
 
-  public onLogin(user:User): void{
+  public onRegister(user:User): void{
     console.log(user);
     this.subscriptions.push(
-      this.jwtAuthenticationService.login(user).subscribe(
-        (response: HttpResponse<User>) => {
-          const token = response.headers.get(HeaderType.JWT_TOKEN);
-          this.jwtAuthenticationService.saveToken(token!);
-          this.jwtAuthenticationService.saveUserToLocalCache(response.body!);
-          this.router.navigateByUrl('welcome');
+      this.jwtAuthenticationService.register(user).subscribe(
+        (response: User) => {
+          this.sendNotification(NotificationType.SUCCESS, `New Account Created ${response.firstName}. Please Log In!`);
+          this.router.navigateByUrl('/login');
         },
         (httpError:HttpErrorResponse) => {
           console.log(httpError);
-          this.sendErrorNotification(NotificationType.ERROR, httpError.error.message);
+          this.sendNotification(NotificationType.ERROR, httpError.error.message);
         }
       )
     )
   }
-  sendErrorNotification(notificationType: NotificationType, message: string) {
+  sendNotification(notificationType: NotificationType, message: string) {
     if(message){
-      this.notificationService.notify(notificationType,message);
+      this.notifier.notify(notificationType,message);
     } else {
-      this.notificationService.notify(notificationType, 'An error occurred. Please try again!');
+      this.notifier.notify(notificationType, 'An error occurred. Please try again!');
     }
   }
   

@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
+import { AuthenticationGuard } from './guard/authentication.guard';
 import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { RouteGuardService } from './service/route-guard.service';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+// import { RouteGuardService } from './service/route-guard.service';
 import { VehicleAddUpComponent } from './vehicle-add-up/vehicle-add-up.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
-  {path: 'vehicle', component: VehicleComponent, canActivate:[RouteGuardService]},
-  {path: 'vehicle/view/:id', component: ViewVehicleComponent, canActivate:[RouteGuardService]},
-  {path: 'logout', component: LogoutComponent, canActivate:[RouteGuardService]},
-  {path: 'vehicle/:id', component: VehicleAddUpComponent, canActivate:[RouteGuardService]},
+  {path: 'register', component: RegisterComponent},
+  {path: 'welcome', component: WelcomeComponent},
+  {path: 'user/management', component: UserComponent},
+  {path: 'vehicle', component: VehicleComponent},
+  {path: 'vehicle/view/:id', component: ViewVehicleComponent},
+  {path: 'vehicle/:id', component: VehicleAddUpComponent},
+  {path: '', redirectTo:'/login', pathMatch:'full'},
 
   {path: '**', component: ErrorComponent},
 ];

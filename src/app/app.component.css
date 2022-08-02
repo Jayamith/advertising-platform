@@ -6,11 +6,11 @@
     min-height: 100%;
     /* equal to footer height */
     margin-bottom: -80px; 
-    background-image: url("../assets/images/1353542.jpg");
+    /* background-image: url("../assets/images/1353542.jpg");
     -webkit-background-size:cover;
  -o-background-size:cover;
  -moz-background-size:cover;
- background-size:cover;
+ background-size:cover; */
  
 
   }
@@ -19,7 +19,7 @@
     display: block;
   }
   .site-footer, .page-wrap:after {
-    height: 142px; 
+    height: 42px; 
   }
   .site-footer {
     background: black;

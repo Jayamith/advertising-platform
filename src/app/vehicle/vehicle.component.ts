@@ -58,10 +58,22 @@ export class VehicleComponent implements OnInit {
     this.vehicleService.getAllVehicles().subscribe(
       response => {
         console.log(response)
-        //console.log(response[0].vehicleImages[0]);
-        // let objectUrl = URL.createObjectURL(response[0].vehicleImages[0].file)
-        // this.vehicles[0].vehicleImages[0].url = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-          this.vehicles = response;        
+        this.vehicles = response;   
+
+        for(var i=0; i<response.length; i++){
+          for(var j=0 ; j<response[i].vehicleImages.length;j++){
+            console.log(response[i].vehicleImages[j]);
+            const fileHandle: FileHandle =  {
+                    file: response[i].vehicleImages[j].file,
+                    url: this.sanitizer.bypassSecurityTrustUrl(
+                      URL.createObjectURL(response[i].vehicleImages[j].file)
+                    )
+                  }
+                  console.log(response[i].vehicleImages[j].file)
+                 // this.vehicle.vehicleImages.push(fileHandle);
+                 this.vehicles[i].vehicleImages.push(fileHandle);
+          }      
+        }
       }
     )
   }
