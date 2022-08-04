@@ -1,0 +1,13 @@
+.mat-card{
+    background-color:rgb(97, 94, 94) ;
+    padding:5px ;
+    border-radius: 12px;
+  }
+  
+   .mat-card{
+    padding:20px ;
+  }
+  
+  .mat-card-content{
+    padding:15px ;
+  }

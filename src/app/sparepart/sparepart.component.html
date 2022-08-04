@@ -1,0 +1,58 @@
+<h2 style="text-align: center; font-family: fantasy;" class="mt-4">Sparepart List</h2>
+
+
+<div class="container mt-4">
+    <mat-card onclick="getSparepart(sparepart.sparepartId)" *ngFor="let sparepart of spareparts; index as i" style="margin: 10px;">
+        <div class="header-center">
+            <div class="row">
+                <div class="col-6">
+                    <mat-card-header>
+                        <mat-card-title>{{sparepart.sname}} - Rs.{{sparepart.price}}</mat-card-title>
+                        <mat-card-subtitle *ngIf="sparepart.sCondition==='Brand New'" style="color: red;"><b>* {{sparepart.sCondition}}</b></mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="sparepart.sCondition==='Re-Conditioned'" style="color: yellow;"><b>* {{sparepart.sCondition}}</b></mat-card-subtitle>
+                        <img
+                            src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
+                            mat-card-avatar />
+                    </mat-card-header>
+                    <div> Seller : {{sparepart.seller}}</div>
+                    <div> Location : {{sparepart.location}}</div>
+                    <div> Contact No : {{sparepart.contact}}</div>
+                    <div> Posted Date : {{sparepart.addedDate  | date | uppercase}}</div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-card-content *ngFor="let v of sparepart.vehicleImages; index as i">
+                                <img mat-card-image style="width: 150px; padding-top: 10px;" 
+                                 [src]="v.url"
+                                 >
+                            </mat-card-content>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">{{sparepart.moreInfo}}</div>
+                        </div>
+                        <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!-- <button style=" bottom: 5px;position: absolute;"  class="btn btn-primary" (click)="viewVehicle(vehicle.vehicleId)">View</button> -->
+                                    </div>
+                                    <div class="col-4">
+                                        <!-- <button style=" bottom: 5px;position: absolute;" class="btn btn-warning" (click)="updateVehicle(vehicle.vehicleId)">Update</button> -->
+                                    </div>
+                                    <div class="col-4">
+                                        <!-- <button style="margin-left: 14px; bottom: 5px;position: absolute;" class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</button> -->
+                                        <button style=" bottom: 80px;position: absolute;"  class="btn btn-primary" (click)="viewSparepart(sparepart.sparepartId)">View</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </mat-card>
+    <div style="text-align: center;" class="mt-5">
+        <button mat-raised-button color="primary" (click)="addSparepart()">Add New</button>
+    </div>
+</div>
+<!-- </div>src="https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg"  -->

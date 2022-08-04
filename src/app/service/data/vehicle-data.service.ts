@@ -40,10 +40,5 @@ export class VehicleDataService {
     return this.http.post(`${APP_URL}/vehicle/add`, vehicle);
   }
 
-  // createBasicAuthenticationHttpHeader(){
-  //   let uname = 'Jayamith';
-  //   let password = 'Priyankara';
-  //   let basicAuthHeaderString = 'Basic '+ window.btoa(uname+':'+password);
-  //   return basicAuthHeaderString;
-  // }
+
 }

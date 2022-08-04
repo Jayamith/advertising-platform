@@ -1,0 +1,59 @@
+<h2 style="text-align: center; font-family: fantasy;" class="mt-4">Land List</h2>
+
+
+<div class="container mt-4">
+    <mat-card onclick="getLand(land.landId)" *ngFor="let land of lands; index as i" style="margin: 10px;">
+        <div class="header-center">
+            <div class="row">
+                <div class="col-6">
+                    <mat-card-header>
+                        <mat-card-title>{{land.lname}} - Rs.{{land.price}}</mat-card-title>
+                        <mat-card-subtitle *ngIf="land.lCondition==='Agricultural'" style="color: red;"><b>* {{land.lCondition}}</b></mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="land.lCondition==='Commercial'" style="color: yellow;"><b>* {{land.lCondition}}</b></mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="land.lCondition==='Residential'" style="color: rgb(255, 145, 0);"><b>* {{land.lCondition}}</b></mat-card-subtitle>
+                        <img
+                            src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
+                            mat-card-avatar />
+                    </mat-card-header>
+                    <div> Seller : {{land.seller}}</div>
+                    <div> Location : {{land.location}}</div>
+                    <div> Contact No : {{land.contact}}</div>
+                    <div> Posted Date : {{land.addedDate  | date | uppercase}}</div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-card-content *ngFor="let v of land.landImages; index as i">
+                                <img mat-card-image style="width: 150px; padding-top: 10px;" 
+                                 [src]="v.url"
+                                 >
+                            </mat-card-content>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">{{land.moreInfo}}</div>
+                        </div>
+                        <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <!-- <button style=" bottom: 5px;position: absolute;"  class="btn btn-primary" (click)="viewVehicle(vehicle.vehicleId)">View</button> -->
+                                    </div>
+                                    <div class="col-4">
+                                        <!-- <button style=" bottom: 5px;position: absolute;" class="btn btn-warning" (click)="updateVehicle(vehicle.vehicleId)">Update</button> -->
+                                    </div>
+                                    <div class="col-4">
+                                        <!-- <button style="margin-left: 14px; bottom: 5px;position: absolute;" class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</button> -->
+                                        <button style=" bottom: 80px;position: absolute;"  class="btn btn-primary" (click)="viewLand(land.landId)">View</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </mat-card>
+    <div style="text-align: center;" class="mt-5">
+        <button mat-raised-button color="primary" (click)="addLand()">Add New</button>
+    </div>
+</div>
+<!-- </div>src="https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg"  -->
