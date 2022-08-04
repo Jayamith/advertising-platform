@@ -27,9 +27,9 @@ export class Sparepart{
 }
 
 @Component({
-  selector: 'app-Sparepart',
-  templateUrl: './Sparepart.component.html',
-  styleUrls: ['./Sparepart.component.css']
+  selector: 'app-sparepart',
+  templateUrl: './sparepart.component.html',
+  styleUrls: ['./sparepart.component.css']
 })
 
 
