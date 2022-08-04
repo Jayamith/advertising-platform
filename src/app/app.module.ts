@@ -26,6 +26,12 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDirective } from './dir/drag.directive';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { SparepartComponent } from './sparepart/sparepart.component';
+import { SparepartAddUpComponent } from './sparepart-add-up/sparepart-add-up.component';
+import { ViewSparepartComponent } from './view-sparepart/view-sparepart.component';
+import { LandComponent } from './land/land.component';
+import { LandAddUpComponent } from './land-add-up/land-add-up.component';
+import { ViewLandComponent } from './view-land/view-land.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +45,13 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
     LogoutComponent,
     VehicleAddUpComponent,
     DragDirective,
-    ViewVehicleComponent
+    ViewVehicleComponent,
+    SparepartComponent ,
+    SparepartAddUpComponent,
+    ViewSparepartComponent,
+    LandComponent,
+    LandAddUpComponent,
+    ViewLandComponent
   ],
   imports: [
     BrowserModule,

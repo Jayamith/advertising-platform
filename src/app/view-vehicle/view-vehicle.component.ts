@@ -10,7 +10,7 @@ import { VehicleDataService } from '../service/data/vehicle-data.service';
 export class ViewVehicleComponent implements OnInit {
 
   vehicleId!: number;
-  vehicle: any;
+  vehicle: any; 
 
   constructor(
     private vehicleDataService: VehicleDataService,

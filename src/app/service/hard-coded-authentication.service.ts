@@ -8,7 +8,7 @@ export class HardCodedAuthenticationService {
   constructor() { }
 
   authenticate(username: string,password: string){
-    if(username==='Jayamith' && password==='Priyankara'){
+    if(username==='Minidu' && password==='1997'){
       return true;
     }
     return false;

@@ -1,0 +1,72 @@
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form){
+      border-left: 5px solid red;
+  }
+  .mat-card{
+  
+    background-image: url('https://i2.au.reastatic.net/800x600/61d272e160431740e6e74eda13151a6cf00a85ccb7afa1e99c7026d61dd040a4/main.jpg'); 
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .header-center{
+      display: flex;
+      justify-content: center; /* align horizontal */
+      align-items: center; 
+    }
+  
+    .example-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .example-full-width {
+      width: 100%;
+    }
+  
+    mat-grid-tile.mat-grid-tile{
+      border: 1px solid white;
+    }
+  
+  .btn-remove-img{
+    position: absolute;
+    cursor: pointer;
+    top: -10px;
+    right: -10px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    height: auto;
+    text-align: center;
+  }
+  
+  .dropzone{
+    height: 150px;
+    min-width: 100px;
+    display: table;
+    background-color: #eee;
+    width: 300px;
+    border: dashed 2px darkgray;
+    border-radius: 10px;
+    margin: auto auto;
+  }
+  
+  .text-warpper{
+    display: table-cell;
+    vertical-align: middle;
+    color: #000;
+  }
+  
+  .centered{
+    text-align: center;
+  }
+  
+  .browse-btn{
+    color: blue;
+    cursor: pointer;
+  }

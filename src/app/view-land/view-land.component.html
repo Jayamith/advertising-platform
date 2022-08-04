@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title><h3>{{land.lname}} - Rs.{{land.price}}</h3></mat-card-title>
+            <mat-card-subtitle *ngIf="land.lCondition==='Agricultural'" style="color: red;" class="align-content end"><b>* {{land.lCondition}}</b></mat-card-subtitle>
+            <img
+                src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
+                mat-card-avatar />
+        </mat-card-header>
+
+        <mat-card-content class="mt-4" style="margin-left: 55px;">
+            <br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="col-5">
+                   
+                    <div> <h5>Transmission : {{land.transmission}}</h5></div>
+                    <div> <h5>Size : {{land.size}}</h5></div>
+                    <div> <h5>Seller : {{land.seller}} </h5></div>
+                    <div> <h5>Location : {{land.location}}</h5></div>
+                    <div> <h5>Contact No : {{land.contact}}</h5></div>
+                    <div> <h5>Email : <a href="land">{{land.email}}</a></h5></div>
+                    <div> <h5>Posted Date : {{land.addedDate  | date | uppercase}}</h5></div>
+                    
+                </div>
+                <div class="col-5">
+                    <div> <h5>{{land.moreInfo}}</h5></div>
+                </div>
+                <div class="col-2">
+                    <div style="bottom: 20px; position: absolute;">
+                        <div class="row">
+                            <button  class="btn btn-warning" (click)="updateLand(land.landId)">Update</button>
+                            <button style="margin-top: 20px;" class="btn btn-danger" (click)="deleteLand(land.landId)">Delete</button>
+                        </div>
+                   </div>
+                </div>
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+</div>
