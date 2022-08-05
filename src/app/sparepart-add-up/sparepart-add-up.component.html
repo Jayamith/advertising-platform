@@ -1,0 +1,184 @@
+<div class="container mt-5">
+    
+    <div class="form-center" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card style="border-radius: 20px; box-shadow: rgba(7, 67, 134, 0.3) 0px 0px 0px 3px;">
+            <div class="header-center">
+                <mat-card-header>
+                    <mat-card-title style="color: rgba(253, 241, 76, 0.911);font-size: 35px;" *ngIf="sparepart.sparepartId==-1" > <b>Add Sparepart</b></mat-card-title>
+                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;"  *ngIf="sparepart.sparepartId!=-1" > <b>Update Sparepart</b></mat-card-title>
+                </mat-card-header>
+            </div>
+            <!-- <div class="alert alert-danger" *ngIf="vehicleForm.dirty && vehicleForm.invalid">Enter Valid Details!</div> -->
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && email.invalid && email.touched">Enter Valid Email!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && model.invalid && model.touched">Enter Valid Model!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && sname.invalid && sname.touched">Enter Valid Name!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && price.invalid && price.touched">Enter Valid Price!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && fuelType.invalid && fuelType.touched">Enter Valid Fuel Type!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && seller.invalid && seller.touched">Enter Valid Seller Name!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && manufacturer.invalid && manufacturer.touched">Enter Valid Fuel Type!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && contact.invalid && contact.touched">Enter Valid Contact Number!</div>
+            <div class="alert alert-danger" *ngIf="sparepartForm.dirty && location.invalid && location.touched">Enter Valid Location!</div>
+
+            <mat-card-content>
+                <form (ngSubmit)="!sparepartForm.invalid && saveSparepart(sparepartForm)" #sparepartForm="ngForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <fieldset class="form-group" style="color:yellow">
+                                <label> Sparepart Name</label>
+                                <input type="text" #sname="ngModel" [(ngModel)]="sparepart.sname"
+                                    class="form-control" name="sname" required="required" minlength="5">
+                            </fieldset>
+                            <!-- <br>
+                                <fieldset class="form-group">
+                                    <label>Target Date</label>
+                                    <input type="date" #targetDate="ngModel"
+                                           [ngModel]="vehicle.targetDate | date:'yyyy-MM-dd'" 
+                                           (ngModelChange)="vehicle.targetDate = $event"
+                                           class="form-control" name="targetDate" required="required">
+                                </fieldset> -->
+                            <br>
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Model</label>
+                                <input type="text" #model="ngModel" [(ngModel)]="sparepart.model"
+                                    class="form-control" name="model" required="required" minlength="3">
+                            </fieldset>
+                            <!-- <mat-form-field appearance="fill">
+                                <mat-label>Fill form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                                <mat-hint>Hint</mat-hint>
+                              </mat-form-field> -->
+                            <br>
+                            <!-- <fieldset class="form-group">
+                                <label>Condition</label>
+                                <select type="text" #description="ngModel" [(ngModel)]="vehicle.vCondition"
+                                    class="form-control" name="vCondition" required="required" minlength="5">
+                                    </select>
+                            </fieldset> -->
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Price</label>
+                                <input type="text" #price="ngModel" [(ngModel)]="sparepart.price"
+                                    class="form-control" name="price" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Fuel Type</label>
+                                <input type="text" #fuelType="ngModel" [(ngModel)]="sparepart.fuelType"
+                                    class="form-control" name="fuelType" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <!-- <fieldset class="form-group">
+                                <label>Transmission</label>
+                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.transmission"
+                                    class="form-control" name="transmission" required="required" minlength="5">
+                            </fieldset> -->
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Seller</label>
+                                <input type="text" #seller="ngModel" [(ngModel)]="sparepart.seller"
+                                    class="form-control" name="seller" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Manufacturer</label>
+                                <input type="text" #manufacturer="ngModel" [(ngModel)]="sparepart.manufacturer"
+                                    class="form-control" name="manufacturer" required="required" minlength="3">
+                            </fieldset>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Email</label>
+                                <input type="email" #email="ngModel" required email
+                                    [(ngModel)]="sparepart.email"
+                                    class="form-control" name="email">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Contact Number</label>
+                                <input type="text" #contact="ngModel" [(ngModel)]="sparepart.contact"
+                                    class="form-control" name="contact" required minlength="10" maxlength="10">
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group" style="color:yellow">
+                                <label>Location</label>
+                                <input type="text" #location="ngModel" [(ngModel)]="sparepart.location"
+                                    class="form-control" name="location" required="required" minlength="5">
+                            </fieldset>
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label >Select Condition</mat-label>
+                                    <mat-select required="required" [(value)]="sparepart.sCondition">
+                                      <mat-option>None</mat-option>
+                                      <mat-option value="Brand New">Brand New</mat-option>
+                                      <mat-option value="Re-Conditioned">Re-Conditioned</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label style="font-size: 20px;" style="color:yellow">More Info</mat-label>
+                                <textarea matInput name="moreInfo" rows="12" [(ngModel)]="sparepart.moreInfo"
+                                    placeholder="Ex. It makes me feel..."></textarea>
+                            </mat-form-field>
+                            <div class="row">
+                                <mat-form-field appearance="fill" style="color:yellow">
+                                    <mat-label style="color:yellow" >Select Transmission</mat-label>
+                                    <mat-select  required="required" [(value)]="sparepart.transmission">
+                                      <mat-option>None</mat-option>
+                                      <mat-option value="Auto">Auto</mat-option>
+                                      <mat-option value="Manual">Manual</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-8"  >
+                            <div >
+                                <div class="dropzone"
+                                appDrag
+                                (files) = "fileDropped($event)"
+                                >
+                                    <div class="text-warpper">
+                                        <div class="centered">
+                                            Drag and drop your images 
+                                            or 
+                                            <a (click)="selectFile.click()" class="browse-btn">Browse</a> 
+                                            files
+                                        </div>
+                                    </div>
+                                </div>
+                                <input style="display: none;" type="file" multiple value="select" #selectFile
+                                    (change)="onFileSelected($event)">
+                            </div>
+                            <div class="mt-5">
+                                <div class="row">
+                                    <mat-grid-list cols="4" rowHeight="1:1">
+                                        <mat-grid-tile *ngFor="let v of sparepart.vehicleImages; index as i">
+                                            <div style="position:relative">
+                                                <span class="btn-remove-img" (click)="removeImage(i)">x</span>
+                                                <img [src]="v.url" width="100px" height="100px">
+                                            </div>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="header-center">
+                        <fieldset>
+                            <button type="submit" [disabled]="!sparepart.transmission || !sparepart.sCondition" mat-raised-button color="accent" style=" background-color: #31a7ff; color: #FFFFFF; width: 120px; float: right;">Save</button>
+                        </fieldset>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

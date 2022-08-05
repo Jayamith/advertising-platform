@@ -1,0 +1,77 @@
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+
+  .mat-card{
+    background-image: url('https://static.horiba.com/fileadmin/_processed_/e/c/csm_Spare-parts_support_321f9dae6e.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  
+  
+  .ng-invalid:not(form){
+      border-left: 5px solid red;
+  }
+  
+  .header-center{
+      display: flex;
+      justify-content: center; /* align horizontal */
+      align-items: center; 
+    }
+  
+    .example-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+     
+      
+    }
+    
+    
+    .example-full-width {
+      width: 100%;
+    }
+  
+    mat-grid-tile.mat-grid-tile{
+      border: 1px solid rgb(236, 117, 117);
+    }
+  
+  .btn-remove-img{
+    position: absolute;
+    cursor: pointer;
+    top: -10px;
+    right: -10px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    height: auto;
+    text-align: center;
+  }
+  
+  .dropzone{
+    height: 150px;
+    min-width: 100px;
+    display: table;
+    background-color: rgba(238, 238, 238, 0.815);
+    width: 300px;
+    border: dashed 2px rgb(241, 173, 173);
+    border-radius: 10px;
+    margin: auto auto;
+  }
+  
+  .text-warpper{
+    display: table-cell;
+    vertical-align: middle;
+    color: rgb(46, 20, 114);
+  }
+  
+  .centered{
+    text-align: center;
+  }
+  
+  .browse-btn{
+    color: blue;
+    cursor: pointer;
+  }

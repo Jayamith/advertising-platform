@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HeaderType } from '../enum/header-type.enum';
 import { NotificationType } from '../enum/notification-type.enum';
+import { Role } from '../enum/role.enum';
 import { User } from '../model/user';
+import { UserDataService } from '../service/data/user-data.service';
 import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 import { NotificationService } from '../service/notification.service';
 
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router:Router, 
     private jwtAuthenticationService:JwtAuthenticationService,
-    private notificationService:NotificationService) { }
+    private notificationService:NotificationService,
+    private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     if(this.jwtAuthenticationService.isLoggedIn()){
@@ -28,6 +31,22 @@ export class LoginComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigateByUrl('/login')
     }
+  }
+
+  public get isAdmin():boolean {
+    return this.getUserRole() === Role.ADMIN;
+  }
+
+  public get isSeller():boolean {
+    return this.isAdmin || this.getUserRole() === Role.SELLER;
+  }
+
+  public get isUser():boolean {
+    return this.isSeller || this.getUserRole() === Role.USER;
+  }
+
+  private getUserRole():string {
+    return this.jwtAuthenticationService.getUserFromCache().role;
   }
 
   public onLogin(user:User): void{
@@ -38,7 +57,15 @@ export class LoginComponent implements OnInit, OnDestroy {
           const token = response.headers.get(HeaderType.JWT_TOKEN);
           this.jwtAuthenticationService.saveToken(token!);
           this.jwtAuthenticationService.saveUserToLocalCache(response.body!);
-          this.router.navigateByUrl('welcome');
+          if(this.isUser){
+            this.router.navigateByUrl('welcome');
+          }
+          if(this.isSeller){
+            this.router.navigateByUrl('vehicle');
+          }
+          if(this.isAdmin){
+            this.router.navigateByUrl('user/management');
+          }
         },
         (httpError:HttpErrorResponse) => {
           console.log(httpError);

@@ -22,8 +22,8 @@ export class User{
         this.password='';
         this.email='';
         this.profileImageUrl='';
-        this.active=true;
-        this.notLocked=true;
+        this.active=null!;
+        this.notLocked=null!;
         this.authorities=[];
         this.role='';
     }

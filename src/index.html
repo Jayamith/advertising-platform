@@ -9,6 +9,44 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+
+  <!-- <script>
+    (function($) {
+    "use strict";
+
+    $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 60
+    });
+
+    $('#topNav').affix({
+        offset: {
+            top: 200
+        }
+    });
+    
+    new WOW().init();
+    
+    $('a.page-scroll').bind('click', function(event) {
+        var $ele = $(this);
+        $('html, body').stop().animate({
+            scrollTop: ($($ele.attr('href')).offset().top - 60)
+        }, 1450, 'easeInOutExpo');
+        event.preventDefault();
+    });
+    
+    $('.navbar-collapse ul li a').click(function() {
+        /* always close responsive nav after click */
+        $('.navbar-toggle:visible').click();
+    });
+
+    $('#galleryModal').on('show.bs.modal', function (e) {
+       $('#galleryImage').attr("src",$(e.relatedTarget).data("src"));
+    });
+
+})(jQuery);
+  </script> -->
 </head>
 <body>
   <app-root></app-root>
@@ -16,5 +54,8 @@
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/script.js/2.0.2/script.min.js"></script>
 </body>
 </html>

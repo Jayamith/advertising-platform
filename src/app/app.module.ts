@@ -32,6 +32,13 @@ import { NotificationService } from './service/notification.service';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { SparepartComponent } from './sparepart/sparepart.component';
+import { ViewSparepartComponent } from './view-sparepart/view-sparepart.component';
+import { SparepartAddUpComponent } from './sparepart-add-up/sparepart-add-up.component';
+import { LandAddUpComponent } from './land-add-up/land-add-up.component';
+import { LandComponent } from './land/land.component';
+import { ViewLandComponent } from './view-land/view-land.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +52,14 @@ import { LoginComponent } from './login/login.component';
     ViewVehicleComponent,
     RegisterComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    SparepartComponent,
+    ViewSparepartComponent,
+    SparepartAddUpComponent,
+    LandAddUpComponent,
+    LandComponent,
+    ViewLandComponent
   ],
   imports: [
     BrowserModule,

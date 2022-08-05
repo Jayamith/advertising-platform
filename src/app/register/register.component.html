@@ -1,62 +1,66 @@
 <section class="vh-100">
-    <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                    class="img-fluid" alt="Sample image">
-            </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 40px;">
-                    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
-                        <div class="form-outline mb-4">
-                            <input type="text" name="firstName" #firstName="ngModel" ngModel class="form-control"
-                                placeholder="First Name" required />
-                            <span class="help-block" style="color: red;"
-                                *ngIf="firstName.invalid && firstName.touched">Please enter first name</span>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" name="lastName" #lastName="ngModel" ngModel class="form-control"
-                                placeholder="Last Name" required />
-                            <span class="help-block" style="color: red;"
-                                *ngIf="lastName.invalid && lastName.touched">Please enter last name</span>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="text" name="username" #username="ngModel" ngModel class="form-control"
-                                placeholder="Username" required />
-                            <span class="help-block" style="color: red;"
-                                *ngIf="username.invalid && username.touched">Please enter username</span>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input type="email" name="email" #email="ngModel" ngModel class="form-control"
-                                placeholder="Email" required />
-                            <span class="help-block" style="color: red;"
-                                *ngIf="username.invalid && username.touched">Please enter valid email</span>
-                        </div>
+    <div class="card pt-5 pb-5"
+        style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
 
-                        <div class="form-outline mb-3">
-                            <input type="password" name="password" #password="ngModel" ngModel class="form-control"
-                                placeholder="Password" required />
-                            <span style="color: red;" *ngIf="password.invalid && password.touched">Please enter
-                                password</span>
-                        </div>
-                        <!-- <div class="form-outline mb-3">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                        class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 40px;">
+                        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+                            <h4 style="text-align: center; font-weight: 600;">Register</h4>
+                            <br>
+                            <div class="form-outline mb-4">
+                                <input type="text" name="firstName" #firstName="ngModel" ngModel class="form-control"
+                                    placeholder="First Name" required />
+                                <span class="help-block" style="color: red;"
+                                    *ngIf="firstName.invalid && firstName.touched">Please enter first name</span>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" name="lastName" #lastName="ngModel" ngModel class="form-control"
+                                    placeholder="Last Name" required />
+                                <span class="help-block" style="color: red;"
+                                    *ngIf="lastName.invalid && lastName.touched">Please enter last name</span>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" name="username" #username="ngModel" ngModel class="form-control"
+                                    placeholder="Username" required />
+                                <span class="help-block" style="color: red;"
+                                    *ngIf="username.invalid && username.touched">Please enter username</span>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="email" name="email" #email="ngModel" ngModel class="form-control"
+                                    placeholder="Email" required />
+                                <span class="help-block" style="color: red;"
+                                    *ngIf="username.invalid && username.touched">Please enter valid email</span>
+                            </div>
+
+                            <div class="form-outline mb-3">
+                                <input type="password" name="password" #password="ngModel" ngModel class="form-control"
+                                    placeholder="Password" required />
+                                <span style="color: red;" *ngIf="password.invalid && password.touched">Please enter
+                                    password</span>
+                            </div>
+                            <!-- <div class="form-outline mb-3">
                             <input type="password" name="reTypePassword" #reTypePassword="ngModel" ngModel class="form-control"
                                 placeholder="Re-Type Password" required />
                             <span style="color: red;" *ngIf="reTypePassword.invalid && reTypePassword.touched">Please enter
                                 password</span>
                         </div> -->
 
-                        <div class="text-center text-lg-start mt-4 pt-2" style="display: block;text-align: center;">
-                            <button type="submit" class="btn btn-primary btn"
-                                style="padding-left: 1.5rem; padding-right: 1.5rem;">Register</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a routerLink="/login"
-                                    class="link-danger">Log In</a></p>
-                        </div>
-
-                    </form>
+                            <div class="text-center mt-4 pt-2" style="text-align: center;">
+                                <button type="submit" class="btn btn-secondary"
+                                    style="padding-left: 1.5rem; padding-right: 1.5rem;">Register</button>
+                                <p style="color: black;" class="small fw-bold mt-2 pt-1 mb-0">Already have an account?
+                                    <a routerLink="/login" class="link-danger">Log In</a></p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>

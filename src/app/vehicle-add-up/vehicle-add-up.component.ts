@@ -7,6 +7,7 @@ import { FileHandle } from '../model/file-handle-model';
 import { VehicleDataService } from '../service/data/vehicle-data.service';
 import { Vehicle } from '../vehicle/vehicle.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class VehicleAddUpComponent implements OnInit {
 
   registerForm!: FormGroup;
   submitted = false;
-    
+  
   vehicleId!: number;
   vehicle: Vehicle = {
     vehicleId:0,
@@ -30,7 +31,7 @@ export class VehicleAddUpComponent implements OnInit {
     price:'',
     model:'',
     transmission:'',
-    seller:'',
+    seller:this.getUserName(),
     fuelType:'',
     manufacturer:'',
     vCondition:'',
@@ -38,9 +39,12 @@ export class VehicleAddUpComponent implements OnInit {
     addedDate:new Date(),
     vehicleImages: []
   };
+  imgUrl: any;
+  temp: any[] = [];
 
   constructor(
     private vehicleDataService: VehicleDataService,
+    private jwtAuthenticationService: JwtAuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
     private sanitizer: DomSanitizer,
@@ -48,6 +52,9 @@ export class VehicleAddUpComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(this.jwtAuthenticationService.isLoggedIn()){
+      this.vehicle.seller = this.getUserName();
+    }
     this.registerForm = this.formBuilder.group({
       vname: ['', Validators.required],
       transmission: ['', Validators.required],
@@ -62,21 +69,29 @@ export class VehicleAddUpComponent implements OnInit {
       manufacturer: ['', Validators.required],
       vCondition: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      //email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       // password: ['', [Validators.required, Validators.minLength(6)]]
   });
     this.vehicleId = this.route.snapshot.params['id'];
-    console.log(this.vehicleId);
-    this.vehicle = new Vehicle(this.vehicleId,' ',' ','','','','','','','','','','',false, new Date(),[]);
+    this.vehicle = new Vehicle(this.vehicleId,' ',' ','','','','','','',this.getUserName(),'','','',false, new Date(),[]);
     if(this.vehicleId!=-1){
       this.vehicleDataService.getVehicle(this.vehicleId).subscribe(
-        data => this.vehicle = data
+        data => {
+          this.vehicle = data
+          // for(var i=0; data.vehicleImages.length; i++){
+          //   this.imgUrl = 'data:image/png;base64,' + data.vehicleImages[i].picByte;
+          //   this.temp.push(this.imgUrl);
+          // }
+        }  
       )
     }
   }
 
   get f() { return this.registerForm.controls; }
 
+  private getUserName():string {
+    return this.jwtAuthenticationService.getUserFromCache().firstName;
+  }
   onFileSelected(event:any){
     if(event.target.files){
       const file = event.target.files[0];
@@ -93,6 +108,12 @@ export class VehicleAddUpComponent implements OnInit {
     }
   }
 
+  // getImages(){
+  //   for(var i=0; this.vehicle.vehicleImages.length; i++){
+  //     this.imgUrl = 'data:image/png;base64,' + this.vehicle.vehicleImages[i].picByte;
+  //     this.temp.push(this.imgUrl);
+  //   }
+  // }
   prepareFormData(vehicle: Vehicle): FormData{
     const formData = new FormData();
 
