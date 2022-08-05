@@ -5,6 +5,7 @@ import { FileHandle } from '../model/file-handle-model';
 import { SparepartDataService } from '../service/data/sparepart-data.service';
 
 
+
 export class Sparepart{
   constructor(
     public sparepartId:number,
@@ -41,6 +42,7 @@ export class SparepartComponent implements OnInit {
   
   constructor(
     private sparepartService: SparepartDataService,
+
     private router: Router,
     private sanitizer: DomSanitizer
   ) { }
@@ -53,6 +55,7 @@ export class SparepartComponent implements OnInit {
     this.sparepartService.getAllSpareparts().subscribe(
       response => {
         console.log(response)
+
           this.spareparts = response;        
       }
     )
@@ -82,3 +85,4 @@ export class SparepartComponent implements OnInit {
     this.router.navigate(['sparepart',-1]);
   }
 }
+

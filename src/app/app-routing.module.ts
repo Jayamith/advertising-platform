@@ -15,6 +15,11 @@ import { ViewSparepartComponent } from './view-sparepart/view-sparepart.componen
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
+import { LandComponent } from './land/land.component';
+import { LandAddUpComponent } from './land-add-up/land-add-up.component';
+import { ViewLandComponent  } from './view-land/view-land.component';
+
+
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
