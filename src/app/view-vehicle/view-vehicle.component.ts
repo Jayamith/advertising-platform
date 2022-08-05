@@ -22,6 +22,7 @@ export class ViewVehicleComponent implements OnInit {
   temp: any[] = [];
   imgUrl: any;
 
+
   constructor(
     private vehicleDataService: VehicleDataService,
     private route: ActivatedRoute,

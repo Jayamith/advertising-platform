@@ -38,6 +38,7 @@ import { ViewSparepartComponent } from './view-sparepart/view-sparepart.componen
 import { SparepartAddUpComponent } from './sparepart-add-up/sparepart-add-up.component';
 import { LandAddUpComponent } from './land-add-up/land-add-up.component';
 import { LandComponent } from './land/land.component';
+
 import { ViewLandComponent } from './view-land/view-land.component';
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ViewLandComponent } from './view-land/view-land.component';
     SparepartAddUpComponent,
     LandAddUpComponent,
     LandComponent,
+
     ViewLandComponent
   ],
   imports: [

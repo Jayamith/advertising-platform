@@ -1,13 +1,12 @@
-/* .wrap{
-    background-image: url("../../assets/images/1353542.jpg");
-    -webkit-background-size:cover;
+ .wrap{
+    background-image: url('https://thumbs.dreamstime.com/b/woman-pointing-advertisement-10702693.jpg'); 
  -o-background-size:cover;
  -moz-background-size:cover;
  background-size:cover;
  margin:0px;
  height:100%;
  width:100%;
-} */
+} 
 
 .container{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -16,5 +15,6 @@
     align-items: center;
     justify-content: center;
     margin-top: 40px;
+   
 
 }

@@ -7,6 +7,7 @@ import { FileHandle } from '../model/file-handle-model';
 import { VehicleDataService } from '../service/data/vehicle-data.service';
 import { Vehicle } from '../vehicle/vehicle.component';
 import { SparepartDataService} from '../service/data/sparepart-data.service';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Sparepart } from '../sparepart/sparepart.component';
 
@@ -40,6 +41,7 @@ export class SparepartAddUpComponent implements OnInit {
 
   constructor(
     private sparepartService:SparepartDataService,
+
     private route: ActivatedRoute,
     private router: Router,
     private sanitizer: DomSanitizer
@@ -124,3 +126,4 @@ export class SparepartAddUpComponent implements OnInit {
     this.sparepart.vehicleImages.push(fileHandle);
   }
 }
+
