@@ -147,7 +147,7 @@ export class VehicleAddUpComponent implements OnInit {
           } 
         );
     } else {
-      this.vehicleDataService.updateVehicle(this.vehicleId,this.vehicle)
+      this.vehicleDataService.updateVehicle(this.vehicleId,vehicleFormData)
         .subscribe(
           data => {
             console.log(data);
