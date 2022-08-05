@@ -24,6 +24,10 @@ export class VehicleDataService {
     return this.http.get<Vehicle[]>(`${APP_URL}/vehicles`,/* {headers}*/);
   }
 
+  getAllVehiclesBySeller(seller:any){
+    return this.http.get<Vehicle[]>(`${APP_URL}/vehiclesBySeller`,/* {headers}*/);
+  }
+
   deleteVehicle( id: any){
     return this.http.delete<Vehicle>(`${APP_URL}/vehicles/${id}`);
   }

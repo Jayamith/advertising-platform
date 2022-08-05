@@ -38,13 +38,7 @@ export class Land  {
 export class LandComponent implements OnInit {
 
   lands: Land[] = [];
-  // vehicles = [
-  //   new Vehicle(1,"Super Vehicle 1",false,new Date()),
-  //   new Vehicle(2,"Super Vehicle 2",false,new Date()),
-  //   new Vehicle(3,"Super Vehicle 3",false,new Date()),
-  //   new Vehicle(4,"Super Vehicle 4",true,new Date()),
-  //   new Vehicle(5,"Super Vehicle 5",false,new Date()),
-  // ]
+
   message: string | undefined;
   
   constructor(

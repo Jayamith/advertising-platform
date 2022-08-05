@@ -1,8 +1,11 @@
 import { Component, OnInit, Sanitizer } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
+import { Role } from '../enum/role.enum';
 import { FileHandle } from '../model/file-handle-model';
 import { VehicleDataService } from '../service/data/vehicle-data.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 export class Vehicle{
   constructor(
@@ -43,9 +46,13 @@ export class VehicleComponent implements OnInit {
   //   new Vehicle(5,"Super Vehicle 5",false,new Date()),
   // ]
   message: string | undefined;
+  temp: any[] = [];
+  imgUrl: any;
+  singleV: any;
   
   constructor(
     private vehicleService: VehicleDataService,
+    private jwtAuthenticationService: JwtAuthenticationService,
     private router: Router,
     private sanitizer: DomSanitizer
   ) { }
@@ -54,16 +61,62 @@ export class VehicleComponent implements OnInit {
     this.refreshVehicles();
   }
 
+  private getUserName():string {
+    return this.jwtAuthenticationService.getUserFromCache().firstName;
+  }
+
   refreshVehicles(){
     this.vehicleService.getAllVehicles().subscribe(
       response => {
-        console.log(response)
-        //console.log(response[0].vehicleImages[0]);
-        // let objectUrl = URL.createObjectURL(response[0].vehicleImages[0].file)
-        // this.vehicles[0].vehicleImages[0].url = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-          this.vehicles = response;        
+      //  this.vehicles = response;  
+      if(this.isAdmin || this.isUser){
+        this.vehicles = response; 
+      } else {
+        for(var i=0; response.length; i++){
+          if(response[i].seller === this.getUserName()){
+            this.vehicles.push(response[i]);
+          }
+        }
+      }  
+      this.getVehicleImages(this.vehicles);
       }
     )
+  }
+
+  getVehicleImages(vlist:any){
+ //   for(var j=0; vlist.length; j++){
+      console.log(vlist)
+    //vlist.pipe(map(val => console.log(val)))
+    vlist.forEach((element: any) => {
+      console.log(element);
+      element.vehicleImages.forEach((e: any) => {
+        console.log(e.picByte)
+      });
+    });
+      // this.singleV = this.vehicles[j];
+      // for(var k=0; this.singleV.length; k++){
+      //   this.imgUrl = 'data:image/png;base64,' + this.singleV[k].picByte;
+      //   console.log(this.imgUrl)
+      //   this.temp.push(this.imgUrl);
+      // }
+ //   }
+
+  }
+
+  public get isAdmin():boolean {
+    return this.getUserRole() === Role.ADMIN;
+  }
+
+  public get isSeller():boolean {
+    return this.getUserRole() === Role.SELLER;
+  }
+
+  public get isUser():boolean {
+    return this.isSeller || this.getUserRole() === Role.USER;
+  }
+
+  private getUserRole():string {
+    return this.jwtAuthenticationService.getUserFromCache().role; 
   }
 
   deleteVehicle(vehicleId: any){
@@ -89,4 +142,43 @@ export class VehicleComponent implements OnInit {
   addVehicle(){
     this.router.navigate(['vehicle',-1]);
   }
+
+  public searchVehicles(searchTerm:string):void{
+    const results: Vehicle[] = [];
+    for(const vehicle of this.vehicles){
+      if(vehicle.vname.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || 
+         vehicle.model.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+          ){
+         results.push(vehicle);
+         }
+    }
+    this.vehicles = results;
+    if( !searchTerm){
+      this.refreshVehicles();
+    }
+  }
 }
+
+
+
+
+
+    // this.vehicleService.getAllVehiclesBySeller('Jayamith').subscribe(
+    //   response => {
+    //     console.log(response)
+    //     this.vehicles = response;  
+
+        // for(var i=0; i<response.length; i++){
+        //   for(var j=0 ; j<response[i].vehicleImages.length;j++){
+        //     console.log(response[i].vehicleImages[j]);
+        //     const fileHandle: FileHandle =  {
+        //             file: response[i].vehicleImages[j].file,
+        //             url: this.sanitizer.bypassSecurityTrustUrl(
+        //               URL.createObjectURL(response[i].vehicleImages[j].file)
+        //             )
+        //           }
+        //           console.log(response[i].vehicleImages[j].file)
+        //          this.vehicles[i].vehicleImages.push(fileHandle);
+        //   }      
+        // }
+                         // this.vehicle.vehicleImages.push(fileHandle);

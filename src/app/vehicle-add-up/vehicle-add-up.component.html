@@ -28,6 +28,8 @@
     </form>
 </div> -->
 
+            <!-- <div class="alert alert-danger" *ngIf="vehicleForm.dirty && vehicleForm.invalid">Enter Valid Details!</div> -->
+
 <div class="container mt-5">
     <div class="form-center" fxLayout="row" fxLayoutAlign="center center">
         <mat-card style="border-radius: 20px; box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;">
@@ -37,14 +39,13 @@
                     <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;"  *ngIf="vehicle.vehicleId!=-1" > <b>Update Vehicle</b></mat-card-title>
                 </mat-card-header>
             </div>
-            <!-- <div class="alert alert-danger" *ngIf="vehicleForm.dirty && vehicleForm.invalid">Enter Valid Details!</div> -->
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && email.invalid && email.touched">Enter Valid Email!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && model.invalid && model.touched">Enter Valid Model!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && vname.invalid && vname.touched">Enter Valid Name!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && price.invalid && price.touched">Enter Valid Price!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && fuelType.invalid && fuelType.touched">Enter Valid Fuel Type!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && seller.invalid && seller.touched">Enter Valid Seller Name!</div>
-            <div class="alert alert-danger" *ngIf="vehicleForm.dirty && manufacturer.invalid && manufacturer.touched">Enter Valid Fuel Type!</div>
+            <div class="alert alert-danger" *ngIf="vehicleForm.dirty && manufacturer.invalid && manufacturer.touched">Enter Valid Manufacturer!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && contact.invalid && contact.touched">Enter Valid Contact Number!</div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && location.invalid && location.touched">Enter Valid Location!</div>
 
@@ -57,37 +58,20 @@
                                 <input type="text" #vname="ngModel" [(ngModel)]="vehicle.vname"
                                     class="form-control" name="vname" required="required" minlength="5">
                             </fieldset>
-                            <!-- <br>
-                                <fieldset class="form-group">
-                                    <label>Target Date</label>
-                                    <input type="date" #targetDate="ngModel"
-                                           [ngModel]="vehicle.targetDate | date:'yyyy-MM-dd'" 
-                                           (ngModelChange)="vehicle.targetDate = $event"
-                                           class="form-control" name="targetDate" required="required">
-                                </fieldset> -->
+                        
                             <br>
                             <fieldset class="form-group">
                                 <label>Model</label>
                                 <input type="text" #model="ngModel" [(ngModel)]="vehicle.model"
                                     class="form-control" name="model" required="required" minlength="3">
                             </fieldset>
-                            <!-- <mat-form-field appearance="fill">
-                                <mat-label>Fill form field</mat-label>
-                                <input matInput placeholder="Placeholder">
-                                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                                <mat-hint>Hint</mat-hint>
-                              </mat-form-field> -->
+                            
                             <br>
-                            <!-- <fieldset class="form-group">
-                                <label>Condition</label>
-                                <select type="text" #description="ngModel" [(ngModel)]="vehicle.vCondition"
-                                    class="form-control" name="vCondition" required="required" minlength="5">
-                                    </select>
-                            </fieldset> -->
+                          
                             <fieldset class="form-group">
                                 <label>Price</label>
                                 <input type="text" #price="ngModel" [(ngModel)]="vehicle.price"
-                                    class="form-control" name="price" required="required" minlength="5">
+                                    class="form-control" name="price" required >
                             </fieldset>
                             <br>
                         </div>
@@ -98,15 +82,11 @@
                                     class="form-control" name="fuelType" required="required" minlength="5">
                             </fieldset>
                             <br>
-                            <!-- <fieldset class="form-group">
-                                <label>Transmission</label>
-                                <input type="text" #description="ngModel" [(ngModel)]="vehicle.transmission"
-                                    class="form-control" name="transmission" required="required" minlength="5">
-                            </fieldset> -->
+                           
                             <fieldset class="form-group">
                                 <label>Seller</label>
                                 <input type="text" #seller="ngModel" [(ngModel)]="vehicle.seller"
-                                    class="form-control" name="seller" required="required" minlength="5">
+                                    class="form-control" name="seller" required="required">
                             </fieldset>
                             <br>
                             <fieldset class="form-group">
@@ -119,7 +99,7 @@
                         <div class="col-4">
                             <fieldset class="form-group">
                                 <label>Email</label>
-                                <input type="email" #email="ngModel" required email
+                                <input type="email" #email="ngModel" required ngModel 
                                     [(ngModel)]="vehicle.email"
                                     class="form-control" name="email">
                             </fieldset>
@@ -211,3 +191,244 @@
         </mat-card>
     </div>
 </div>
+
+<!-- <div class="container mt-5">
+    <div class="form-center" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card style="border-radius: 20px; box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;">
+            <div class="header-center">
+                <mat-card-header>
+                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;" *ngIf="vehicle.vehicleId==-1" > <b>Add Vehicle</b></mat-card-title>
+                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;"  *ngIf="vehicle.vehicleId!=-1" > <b>Update Vehicle</b></mat-card-title>
+                </mat-card-header>
+            </div>
+
+            <mat-card-content>
+                <form (ngSubmit)="saveVehicle()" [formGroup]="registerForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <fieldset class="form-group">
+                                <label>Name</label>
+                                <input 
+                                    type="text" 
+                                    required 
+                                    formControlName="vname" 
+                                    [(ngModel)]="vehicle.vname"
+                                    [ngClass]="{ 'is-invalid': submitted && f.vname.errors }" 
+                                    class="form-control" 
+                                    >
+                                    <div *ngIf="submitted && f.vname.errors" class="invalid-feedback">
+                                        <div *ngIf=" f.vname.errors.required" >Vehicle Name is required</div>
+                                    </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Model</label>
+                                <input 
+                                    type="text" 
+                                    required 
+                                    [(ngModel)]="vehicle.model"
+                                    formControlName="model"
+                                    [ngClass]="{ 'is-invalid': submitted && f.model.errors }" 
+                                    class="form-control"  />
+                                    <div *ngIf="submitted && f.model.errors" class="invalid-feedback">
+                                        <div *ngIf=" f.model.errors.required" >Model is required</div>
+                                    </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Price</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    required 
+                                    [(ngModel)]="vehicle.price"
+                                    formControlName="price"
+                                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" 
+                                    />
+                                    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                        <div *ngIf=" f.price.errors.required" >Price is required</div>
+                                    </div>
+                            </fieldset>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="form-group">
+                                <label>Fuel Type</label>
+                                <input 
+                                type="text" 
+                                [(ngModel)]="vehicle.fuelType"
+                                class="form-control" 
+                                required 
+                                formControlName="fuelType"
+                                [ngClass]="{ 'is-invalid': submitted && f.fuelType.errors }" 
+                                />
+                                <div *ngIf="submitted && f.fuelType.errors" class="invalid-feedback">
+                                    <div *ngIf=" f.fuelType.errors.required" >Fuel Type is required</div>
+                                </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Seller</label>
+                                <input 
+                                type="text" 
+                                class="form-control" 
+                                required 
+                                [(ngModel)]="vehicle.seller"
+                                formControlName="seller"
+                                [ngClass]="{ 'is-invalid': submitted && f.seller.errors }" 
+                                />
+                                <div *ngIf="submitted && f.seller.errors" class="invalid-feedback">
+                                    <div *ngIf=" f.seller.errors.required" >Seller is required</div>
+                                </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Manufacturer</label>
+                                <input 
+                                type="text" 
+                                class="form-control" 
+                                [(ngModel)]="vehicle.manufacturer"
+                                required 
+                                formControlName="manufacturer"
+                                [ngClass]="{ 'is-invalid': submitted && f.manufacturer.errors }" 
+                                />
+                                <div *ngIf="submitted && f.manufacturer.errors" class="invalid-feedback">
+                                    <div *ngIf=" f.manufacturer.errors.required" >Manufacturer is required</div>
+                                </div>
+                            </fieldset>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <fieldset class="form-group">
+                                <label>Email</label>
+                                <input 
+                                    type="email" 
+                                    required 
+                                    [(ngModel)]="vehicle.email"
+                                    formControlName="email" 
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                    class="form-control" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
+                                    </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Contact Number</label>
+                                <input 
+                                type="text" 
+                                class="form-control" 
+                                required 
+                                [(ngModel)]="vehicle.contact"
+                                formControlName="contact"
+                                [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" 
+                                />
+                                <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                                    <div *ngIf=" f.contact.errors.required" >Contact No is required</div>
+                                </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="form-group">
+                                <label>Location</label>
+                                <input 
+                                type="text" 
+                                class="form-control" 
+                                required 
+                                [(ngModel)]="vehicle.location"
+                                formControlName="location"
+                                [ngClass]="{ 'is-invalid': submitted && f.location.errors }" 
+                                />
+                                <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                                    <div *ngIf=" f.location.errors.required" >Location is required</div>
+                                </div>
+                            </fieldset>
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label >Select Condition</mat-label>
+                                    <mat-select 
+                                        required
+                                         [(value)]="vehicle.vCondition"
+                                         formControlName="vCondition" 
+                                        [ngClass]="{ 'is-invalid': submitted && f.vCondition.errors }"
+                                         >
+                                      <mat-option>None</mat-option>
+                                      <mat-option value="Brand New">Brand New</mat-option>
+                                      <mat-option value="Re-Conditioned">Re-Conditioned</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label style="font-size: 20px;">More Info</mat-label>
+                                <textarea matInput name="moreInfo" rows="12" [(ngModel)]="vehicle.moreInfo"
+                                    placeholder="Ex. It makes me feel..."></textarea>
+                            </mat-form-field>
+                            <div class="row">
+                                <mat-form-field appearance="fill">
+                                    <mat-label >Select Transmission</mat-label>
+                                    <mat-select  
+                                        formControlName="transmission" 
+                                        [ngClass]="{ 'is-invalid': submitted && f.transmission.errors }"
+                                        [(value)]="vehicle.transmission"
+                                        >
+                                      <mat-option>None</mat-option>
+                                      <mat-option value="Auto">Auto</mat-option>
+                                      <mat-option value="Manual">Manual</mat-option>
+                                    </mat-select>
+                                    <div *ngIf="submitted && f.transmission.errors" class="invalid-feedback">
+                                        <div *ngIf=" f.transmission.errors.required" >Transmission is required</div>
+                                    </div>
+                                  </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-8"  >
+                            <div >
+                                <div class="dropzone"
+                                appDrag
+                                (files) = "fileDropped($event)"
+                                >
+                                    <div class="text-warpper">
+                                        <div class="centered">
+                                            Drag and drop your images 
+                                            or 
+                                            <a (click)="selectFile.click()" class="browse-btn">Browse</a> 
+                                            files
+                                        </div>
+                                    </div>
+                                </div>
+                                <input style="display: none;" type="file" multiple value="select" #selectFile
+                                    (change)="onFileSelected($event)">
+                            </div>
+                            <div class="mt-5">
+                                <div class="row">
+                                    <mat-grid-list cols="4" rowHeight="1:1">
+                                        <mat-grid-tile *ngFor="let v of vehicle.vehicleImages; index as i">
+                                            <div style="position:relative">
+                                                <span class="btn-remove-img" (click)="removeImage(i)">x</span>
+                                                <img [src]="v.url" width="100px" height="100px">
+                                            </div>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="header-center">
+                        <fieldset>
+                            <button type="submit" [disabled]="!vehicle.transmission || !vehicle.vCondition" mat-raised-button color="accent">Save</button>
+                        </fieldset>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div> -->

@@ -2,7 +2,8 @@ import { Component, OnInit, Sanitizer } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FileHandle } from '../model/file-handle-model';
-import { SparepartDataServiceService} from '../service/data/sparepart-data-service.service';
+import { SparepartDataService } from '../service/data/sparepart-data.service';
+
 
 
 export class Sparepart{
@@ -36,17 +37,12 @@ export class Sparepart{
 export class SparepartComponent implements OnInit {
 
   spareparts: Sparepart[] = [];
-  // vehicles = [
-  //   new Vehicle(1,"Super Vehicle 1",false,new Date()),
-  //   new Vehicle(2,"Super Vehicle 2",false,new Date()),
-  //   new Vehicle(3,"Super Vehicle 3",false,new Date()),
-  //   new Vehicle(4,"Super Vehicle 4",true,new Date()),
-  //   new Vehicle(5,"Super Vehicle 5",false,new Date()),
-  // ]
+
   message: string | undefined;
   
   constructor(
-    private sparepartService:SparepartDataServiceService,
+    private sparepartService: SparepartDataService,
+
     private router: Router,
     private sanitizer: DomSanitizer
   ) { }
@@ -59,9 +55,7 @@ export class SparepartComponent implements OnInit {
     this.sparepartService.getAllSpareparts().subscribe(
       response => {
         console.log(response)
-        //console.log(response[0].vehicleImages[0]);
-        // let objectUrl = URL.createObjectURL(response[0].vehicleImages[0].file)
-        // this.vehicles[0].vehicleImages[0].url = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+
           this.spareparts = response;        
       }
     )

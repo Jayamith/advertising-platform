@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { LandDataServiceService} from '../service/data/land-data-service.service';
 
@@ -7,6 +8,7 @@ import { LandDataServiceService} from '../service/data/land-data-service.service
   templateUrl: './view-land.component.html',
   styleUrls: ['./view-land.component.css']
 })
+
 
 export class ViewLandComponent implements OnInit {
 

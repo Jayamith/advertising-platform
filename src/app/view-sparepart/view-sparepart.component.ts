@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-import { SparepartDataServiceService} from '../service/data/sparepart-data-service.service';
-
+import { SparepartDataService} from '../service/data/sparepart-data.service';
 
 @Component({
   selector: 'app-view-sparepart',
@@ -16,7 +14,8 @@ export class ViewSparepartComponent implements OnInit {
   sparepart: any;
 
   constructor(
-    private sparepartService:SparepartDataServiceService,
+    private sparepartService:SparepartDataService,
+
     private route: ActivatedRoute,
     private router: Router
     ) { }

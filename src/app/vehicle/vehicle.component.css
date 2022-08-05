@@ -11,3 +11,21 @@
   .mat-card-content{
     padding:15px ;
   }
+
+  .vehicle-banner {
+    background-image: url("../../assets/images/banner.jpg");
+    background-color: #cccccc;
+    height: 250px;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    text-align: start;
+    position: relative;
+}
+
+.vehicle-banner span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

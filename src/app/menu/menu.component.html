@@ -1,36 +1,93 @@
-<header>
-    <mat-toolbar style="background-color: black;">
-        <mat-toolbar-row>
-          <span style="font-size: 40px;  font-family: fantasy;">Ad-Ziy</span>
-          <span class="example-spacer"></span>
-          <button *ngIf="!basicAuthenticationService.isLoggedIn()" routerLink="/login"
-           mat-raised-button style="color: black;background-color: cyan;" class="example-icon" aria-label="Example icon-button with menu icon">
-            Login
-          </button>
-          <button *ngIf="basicAuthenticationService.isLoggedIn()" routerLink="/logout"
-           mat-raised-button color="warn" class="example-icon" aria-label="Example icon-button with menu icon">
-            Logout
-          </button>
-        </mat-toolbar-row>
-    
-        <mat-toolbar-row *ngIf="basicAuthenticationService.isLoggedIn()">
-          <span>
-            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/welcome/home" color="accent">Home</button>
-          </span>
-          <span class="left-spacer"></span>
-          <span>
-            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/vehicle" color="accent">Vehicle</button>
-          </span>
-          <span class="left-spacer"></span>
-          <span>
-            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/land" color="accent">Land</button>
-          </span>
-          <span class="left-spacer"></span>
-          <span>
-            <button *ngIf="basicAuthenticationService.isLoggedIn()" mat-raised-button routerLink="/sparepart" color="accent">Spare Parts</button>
-          </span>
-          <span class="left-spacer"></span>
-       
-        </mat-toolbar-row>
-      </mat-toolbar>
-</header>
+<!-- <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Ad-Ziy</a>
+        </div>
+        <div style="color: white;" class="navbar-collapse collapse" id="bs-navbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="page-scroll" href="#one">Intro</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#two">Highlights</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#three">Gallery</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#four">Features</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#last">Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #b9dbf4; padding: 30px;font-size: 20px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/welcome"
+      style="font-weight: 800; font-size: 40px;font-family: fantasy;">Ad-Ziy</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" *ngIf="jwtAuthenticationService.isLoggedIn()" aria-current="page"
+            style="font-weight: 600" routerLink="/vehicle">Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" *ngIf="jwtAuthenticationService.isLoggedIn()" aria-current="page"
+            style="font-weight: 600" routerLink="/sparepart">Spare Parts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" *ngIf="jwtAuthenticationService.isLoggedIn()" aria-current="page"
+            style="font-weight: 600" routerLink="/land">Lands</a>
+        </li>
+        
+      </ul>
+      <div class="float-end">
+        <ul>
+          <!-- <li class="nav-item float-end " style="margin-left: 10px;">
+            <div *ngIf="jwtAuthenticationService.isLoggedIn()" ><a style="color: red;" class="nav-link active" routerLink="/user/management"><i class="fa-solid fa-right-from-bracket"></i>
+                Logout</a></div>
+          </li> -->
+          <li class="nav-item float-end " style="margin-left: 10px;">
+            <button type="button" class="btn btn-danger" *ngIf="jwtAuthenticationService.isLoggedIn()"  (click)="onLogOut()">
+              <i class="fa-solid fa-right-from-bracket"></i>  Logout </button>
+          </li>
+          <li class="nav-item float-end " style="margin-left: 10px;">
+            <button type="button" class="btn btn-info" *ngIf="jwtAuthenticationService.isLoggedIn()"  routerLink="/user/management">
+              <i class="fa-solid fa-user"></i>  {{username}} </button>
+          </li>
+          <li class="nav-item float-end " style="margin-left: 10px;">
+            <button type="button" class="btn btn-warning" *ngIf="jwtAuthenticationService.isLoggedIn() && isAdmin"  routerLink="/user/management">
+              <i class="fa-solid fa-users"></i>  Admin Portal </button>
+          </li>
+          <!-- <li class="nav-item float-end ">
+            <div *ngIf="jwtAuthenticationService.isLoggedIn()" class="nav nav-pills"><a class="nav-link active" routerLink="/user/management"><i class="fa fa-user"></i>
+              Profile</a></div>
+          </li> -->
+        </ul>
+      </div>
+      <!-- <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>
+
