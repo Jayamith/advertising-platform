@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleBasicAuthLogin(){
-    // if(this.username==='Jayamith' && this.password==='Priyankara'){
+{
      this.basicAuthentication.executeBasicAuthSrvice(this.username, this.password)
      .subscribe(
       data => {
@@ -49,4 +49,4 @@ export class LoginComponent implements OnInit {
      )
    }
   
-}
+  }}
