@@ -22,9 +22,10 @@ export class Vehicle{
     public fuelType:string,
     public manufacturer:string,
     public vCondition:string,
-    public accepted:boolean,
+    public vStatus:string,
     public addedDate:Date,
-    public vehicleImages: FileHandle[]
+    public vehicleImages: FileHandle[],
+    public photos: any[] = []
   ){}
 }
 
@@ -54,7 +55,7 @@ export class VehicleComponent implements OnInit {
     private vehicleService: VehicleDataService,
     private jwtAuthenticationService: JwtAuthenticationService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -71,28 +72,48 @@ export class VehicleComponent implements OnInit {
       //  this.vehicles = response;  
       if(this.isAdmin || this.isUser){
         this.vehicles = response; 
-      } else {
+        this.getVehicleImages(this.vehicles);
+
+      } else if(this.isSeller){
         for(var i=0; response.length; i++){
           if(response[i].seller === this.getUserName()){
             this.vehicles.push(response[i]);
+            this.getVehicleImages(this.vehicles);
+
           }
         }
       }  
-      this.getVehicleImages(this.vehicles);
       }
     )
   }
 
   getVehicleImages(vlist:any){
- //   for(var j=0; vlist.length; j++){
-      console.log(vlist)
+    for(var j=1; j<vlist.length; j++){
+      for(var k=1; k<vlist[j].vehicleImages.length; k++){
+        console.log(vlist[j].vehicleImages[k])
+      }
+    }
+    for(const item of vlist){
+      //console.log(item)
+      for(var i = 0; i<item.vehicleImages.length; i++){
+        //console.log(v1.picByte)
+        
+        this.imgUrl = 'data:image/png;base64,' + item.vehicleImages[i].picByte;
+        item.photos.push(this.imgUrl);
+       // console.log(this.imgUrl)
+
+        // item.photos.forEach((element: any) => {
+        //   console.log(element)
+        // });
+      }
+    }
     //vlist.pipe(map(val => console.log(val)))
-    vlist.forEach((element: any) => {
-      console.log(element);
-      element.vehicleImages.forEach((e: any) => {
-        console.log(e.picByte)
-      });
-    });
+    // vlist.forEach((element: any) => {
+    //   console.log(element);
+    //   element.vehicleImages.forEach((e: any) => {
+    //     console.log(e.picByte)
+    //   });
+    // });
       // this.singleV = this.vehicles[j];
       // for(var k=0; this.singleV.length; k++){
       //   this.imgUrl = 'data:image/png;base64,' + this.singleV[k].picByte;
@@ -112,7 +133,7 @@ export class VehicleComponent implements OnInit {
   }
 
   public get isUser():boolean {
-    return this.isSeller || this.getUserRole() === Role.USER;
+    return this.getUserRole() === Role.USER;
   }
 
   private getUserRole():string {

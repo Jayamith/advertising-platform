@@ -31,6 +31,9 @@ const routes: Routes = [
   {path: 'sparepart', component: SparepartComponent},
   {path: 'sparepart/view/:id', component: ViewSparepartComponent},
   {path: 'sparepart/:id', component: SparepartAddUpComponent},
+  {path: 'land', component: LandComponent},
+  {path: 'land/view/:id', component: ViewLandComponent},
+  {path: 'land/:id', component: LandAddUpComponent},
   {path: '', redirectTo:'/login', pathMatch:'full'},
 
   {path: '**', component: ErrorComponent},

@@ -35,9 +35,10 @@ export class VehicleAddUpComponent implements OnInit {
     fuelType:'',
     manufacturer:'',
     vCondition:'',
-    accepted:false,
+    vStatus:'',
     addedDate:new Date(),
-    vehicleImages: []
+    vehicleImages: [],
+    photos: []
   };
   imgUrl: any;
   temp: any[] = [];
@@ -73,7 +74,7 @@ export class VehicleAddUpComponent implements OnInit {
       // password: ['', [Validators.required, Validators.minLength(6)]]
   });
     this.vehicleId = this.route.snapshot.params['id'];
-    this.vehicle = new Vehicle(this.vehicleId,' ',' ','','','','','','',this.getUserName(),'','','',false, new Date(),[]);
+    this.vehicle = new Vehicle(this.vehicleId,' ',' ','','','','','','',this.getUserName(),'','','','', new Date(),[],[]);
     if(this.vehicleId!=-1){
       this.vehicleDataService.getVehicle(this.vehicleId).subscribe(
         data => {
@@ -147,7 +148,7 @@ export class VehicleAddUpComponent implements OnInit {
           } 
         );
     } else {
-      this.vehicleDataService.updateVehicle(this.vehicleId,this.vehicle)
+      this.vehicleDataService.updateVehicle(this.vehicleId,vehicleFormData)
         .subscribe(
           data => {
             console.log(data);

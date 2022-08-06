@@ -20,17 +20,13 @@ export class LandAddUpComponent implements OnInit {
   land: Land= {
     landId:0,
     lname:'',
-    
     moreInfo:'',
     email:'',
     contact:'',
     location:'',
     price:'',
-  
-    
     seller:'',
-
-    size:'',
+    lsize:'',
     lCondition:'',
     accepted:false,
     addedDate:new Date(),
@@ -105,7 +101,7 @@ saveLand(landForm: NgForm){
         } 
       );
   } else {
-    this.landService.updateLand(this.landId,this.land)
+    this.landService.updateLand(this.landId,landFormData)
       .subscribe(
         data => {
           console.log(data);

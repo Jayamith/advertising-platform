@@ -36,8 +36,12 @@ export class VehicleDataService {
     return this.http.get<Vehicle>(`${APP_URL}/vehicles/${id}`);
   }
 
-  updateVehicle( id: any, vehicle: any){
+  updateVehicle( id: any, vehicle: FormData){
     return this.http.put(`${APP_URL}/vehicles/${id}`, vehicle);
+  }
+
+  updateStatus( id: any, vehicle: FormData){
+    return this.http.put(`${APP_URL}/vehicle/status/${id}`, vehicle);
   }
 
   createVehicle(vehicle: FormData){

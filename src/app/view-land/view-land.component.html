@@ -9,13 +9,35 @@
                 mat-card-avatar />
         </mat-card-header>
 
-        <mat-card-content class="mt-4" style="margin-left: 55px;">
-            <br><br><br><br><br><br><br>
+        <mat-card-content class="mt-4 p-5">
             <div class="row">
+                <div class="card pt-3 pb-3">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div *ngFor="let l of temp; index as i" class="carousel-item active">
+                            <img [src]="l" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
+                </div>
+            </div>
+            <div class="row mt-5">
                 <div class="col-5">
-                   
-                    <div> <h5>Transmission : {{land.transmission}}</h5></div>
-                    <div> <h5>Size : {{land.size}}</h5></div>
+                    <div> <h5>Title : {{land.lname}}</h5></div>
+                    <div> <h5>Size : {{land.lsize}}</h5></div>
                     <div> <h5>Seller : {{land.seller}} </h5></div>
                     <div> <h5>Location : {{land.location}}</h5></div>
                     <div> <h5>Contact No : {{land.contact}}</h5></div>

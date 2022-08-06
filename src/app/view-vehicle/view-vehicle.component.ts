@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from '../enum/role.enum';
 import { FileHandle } from '../model/file-handle-model';
 import { VehicleDataService } from '../service/data/vehicle-data.service';
 import { JwtAuthenticationService } from '../service/jwt-authentication.service';
+import { Vehicle } from '../vehicle/vehicle.component';
 
 
 @Component({
@@ -36,7 +38,7 @@ export class ViewVehicleComponent implements OnInit {
     this.vehicleId = this.route.snapshot.params['id'];
     this.vehicleDataService.getVehicle(this.vehicleId).subscribe(
       data => {
-        console.log(data)
+        //console.log(data)
         this.vehicle = data;
         this.getImages();
       }
@@ -80,4 +82,22 @@ updateVehicle(vehicleId:any){
   console.log(`update ${vehicleId}`);
   this.router.navigate(['vehicle',vehicleId]);
 }
+
+public createStatusFormData(vehicle:Vehicle):FormData{
+  const formData = new FormData();
+  formData.append('vStatus', vehicle.vStatus);
+  return formData;
+}
+
+updateStatus(statusForm: NgForm){
+  const statusFormData = this.createStatusFormData(statusForm.value);
+  console.log(statusForm.value)
+    this.vehicleDataService.updateStatus(this.vehicleId,statusFormData)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['vehicle']);
+        }
+      )
+  }
 }
