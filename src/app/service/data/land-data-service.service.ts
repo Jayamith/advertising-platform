@@ -27,7 +27,7 @@ export class LandDataServiceService {
     return this.http.get<Land>(`${APP_URL}/lands/${id}`);
   }
 
-  updateLand( id: any, land: any){
+  updateLand( id: any, land: FormData){
     return this.http.put(`${APP_URL}/lands/${id}`,land);
   }
 

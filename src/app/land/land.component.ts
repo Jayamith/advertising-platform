@@ -15,11 +15,8 @@ export class Land  {
     public contact:string,
     public location:string,
     public price:string,
-   
-    
     public seller:string,
-    
-    public size:string,
+    public lsize:string,
     public lCondition:string,
     public accepted:boolean,
     public addedDate:Date,

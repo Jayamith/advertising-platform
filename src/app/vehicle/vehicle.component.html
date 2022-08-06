@@ -79,21 +79,19 @@
                     </div>
                     <div class="col-6">
                         <div class="row">
-                            <!-- <div class="col-3">
-                                <mat-card-content *ngFor="let v of temp; index as i">
+                            <!-- <div class="col-3"> -->
+                                <!-- <mat-card-content *ngFor="let v of vehicle.photos; index as i">
                                     <img mat-card-image style="width: 150px; padding-top: 10px;" [src]="v">
-                                </mat-card-content>
-                                <div *ngFor="let l of vehicles; index as i">
-                                    <div *ngFor="let v of l.vehicleImages; index as j">
-                                        <img width="200px" height="200px" [src]="'data:image/png;base64,'+v.picByte">
+                                </mat-card-content> -->
+                                    <div *ngFor="let v of vehicle.photos | slice:0:1; index as j">
+                                        <img style="border: 1px solid;"  width="200px" height="200px" [src]="v">
                                     </div>
-                                </div>
-                            </div> -->
-                            <div class="col-6">
+                            <!-- </div> -->
+                            <!-- <div class="col-3">
                                 <div class="row">{{vehicle.moreInfo}}</div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-6">
+                            <!-- <div class="col-6"> -->
                                 <div class="row">
                                     <div class="col-4">
                                         <!-- <button style=" bottom: 5px;position: absolute;"  class="btn btn-primary" (click)="viewVehicle(vehicle.vehicleId)">View</button> -->
@@ -107,7 +105,7 @@
                                             (click)="viewVehicle(vehicle.vehicleId)">View</button>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>

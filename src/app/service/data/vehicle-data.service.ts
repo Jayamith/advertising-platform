@@ -40,6 +40,10 @@ export class VehicleDataService {
     return this.http.put(`${APP_URL}/vehicles/${id}`, vehicle);
   }
 
+  updateStatus( id: any, vehicle: FormData){
+    return this.http.put(`${APP_URL}/vehicle/status/${id}`, vehicle);
+  }
+
   createVehicle(vehicle: FormData){
     return this.http.post(`${APP_URL}/vehicle/add`, vehicle);
   }
