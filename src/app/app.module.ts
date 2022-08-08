@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ErrorComponent } from './error/error.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { FooterComponent } from './footer/footer.component';
@@ -40,6 +41,9 @@ import { LandAddUpComponent } from './land-add-up/land-add-up.component';
 import { LandComponent } from './land/land.component';
 
 import { ViewLandComponent } from './view-land/view-land.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ViewVehicleListUserComponent } from './view-vehicle-list-user/view-vehicle-list-user.component';
+import { ViewVehicleListAdminComponent } from './view-vehicle-list-admin/view-vehicle-list-admin.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +65,10 @@ import { ViewLandComponent } from './view-land/view-land.component';
     LandAddUpComponent,
     LandComponent,
 
-    ViewLandComponent
+    ViewLandComponent,
+      UserProfileComponent,
+      ViewVehicleListUserComponent,
+      ViewVehicleListAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,8 @@ import { ViewLandComponent } from './view-land/view-land.component';
     MatGridListModule,
     NgxTypedJsModule,
     MatSelectModule,
-    NotificationModule
+    NotificationModule,
+    SlickCarouselModule
   ],
   providers: [
     NotificationService,AuthenticationGuard,UserDataService, JwtAuthenticationService, 

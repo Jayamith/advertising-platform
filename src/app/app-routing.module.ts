@@ -18,6 +18,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LandComponent } from './land/land.component';
 import { LandAddUpComponent } from './land-add-up/land-add-up.component';
 import { ViewLandComponent  } from './view-land/view-land.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ViewVehicleListUserComponent } from './view-vehicle-list-user/view-vehicle-list-user.component';
+import { ViewVehicleListAdminComponent } from './view-vehicle-list-admin/view-vehicle-list-admin.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,8 @@ const routes: Routes = [
   {path: 'welcome', component: WelcomeComponent},
   {path: 'user/management', component: UserComponent , canActivate:[AuthenticationGuard], data:{role:Role.ADMIN}},
   {path: 'vehicle', component: VehicleComponent},
+  {path: 'user/vehicle', component: ViewVehicleListUserComponent},
+  {path: 'admin/vehicle', component: ViewVehicleListAdminComponent},
   {path: 'vehicle/view/:id', component: ViewVehicleComponent},
   {path: 'vehicle/:id', component: VehicleAddUpComponent},
   {path: 'sparepart', component: SparepartComponent},
@@ -34,6 +39,7 @@ const routes: Routes = [
   {path: 'land', component: LandComponent},
   {path: 'land/view/:id', component: ViewLandComponent},
   {path: 'land/:id', component: LandAddUpComponent},
+  {path: 'user/profile', component: UserProfileComponent},
   {path: '', redirectTo:'/login', pathMatch:'full'},
 
   {path: '**', component: ErrorComponent},
