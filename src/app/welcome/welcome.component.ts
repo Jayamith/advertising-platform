@@ -29,9 +29,8 @@ export class WelcomeComponent implements OnInit {
   slides = [
     {img: "../assets/images/car1.jpg"},
     {img: "../assets/images/car4.jpg"},
-    {img: "../assets/images/car1.jpg"},
-    {img: "../assets/images/car1.jpg"},
-    {img: "../assets/images/car1.jpg"},
+    {img: "../assets/images/car5.jpg"},
+    {img: "../assets/images/car10.jpg"},
   ];
   // slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
   

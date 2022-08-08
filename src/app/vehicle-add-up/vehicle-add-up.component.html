@@ -35,8 +35,8 @@
         <mat-card style="border-radius: 20px; box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;">
             <div class="header-center">
                 <mat-card-header>
-                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;" *ngIf="vehicle.vehicleId==-1" > <b>Add Vehicle</b></mat-card-title>
-                    <mat-card-title style="color: rgb(146, 232, 146);font-size: 25px;"  *ngIf="vehicle.vehicleId!=-1" > <b>Update Vehicle</b></mat-card-title>
+                    <mat-card-title style="color: rgb(116, 183, 116);font-size: 25px;" *ngIf="vehicle.vehicleId==-1" > <b>Add Vehicle</b></mat-card-title>
+                    <mat-card-title style="color: rgb(107, 180, 107);font-size: 25px;"  *ngIf="vehicle.vehicleId!=-1" > <b>Update Vehicle</b></mat-card-title>
                 </mat-card-header>
             </div>
             <div class="alert alert-danger" *ngIf="vehicleForm.dirty && email.invalid && email.touched">Enter Valid Email!</div>
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-4">
                             <fieldset class="form-group">
-                                <label>Name</label>
+                                <label>Type</label>
                                 <input type="text" #vname="ngModel" [(ngModel)]="vehicle.vname"
                                     class="form-control" name="vname" required="required" minlength="5">
                             </fieldset>
