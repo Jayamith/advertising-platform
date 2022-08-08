@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -16,11 +16,12 @@ import { NotificationService } from '../service/notification.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
   private titleSubject = new BehaviorSubject<string>('Profile');
   public titleAction$ = this.titleSubject.asObservable();
   public users: User[] = [];
+  public user!: User;
   public refreshing: boolean = false;
   private subscriptions: Subscription[] = [];
   public selectedUser!: User;
@@ -35,6 +36,7 @@ export class UserComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
+    this.user = this.jwtAuthenticationService.getUserFromCache();
     this.getUsers(true);
   }
 
@@ -192,5 +194,9 @@ export class UserComponent implements OnInit {
     this.jwtAuthenticationService.logout();
     this.router.navigateByUrl('/login');
     this.sendNotification(NotificationType.SUCCESS, `You 've been logged out successfully!`);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

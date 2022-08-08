@@ -20,8 +20,9 @@ export class MenuComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.username = this.getUserName();
-
+    if(this.jwtAuthenticationService.isLoggedIn()){
+      this.username = this.jwtAuthenticationService.getUserFromCache().username; 
+    }
   }
 
   public get isAdmin():boolean {
@@ -38,10 +39,6 @@ export class MenuComponent implements OnInit {
 
   private getUserRole():string {
     return this.jwtAuthenticationService.getUserFromCache().role; 
-  }
-
-  private getUserName():string {
-    return this.jwtAuthenticationService.getUserFromCache().username; 
   }
 
   sendNotification(notificationType: NotificationType, message: string) {

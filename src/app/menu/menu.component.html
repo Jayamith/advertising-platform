@@ -47,7 +47,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" *ngIf="jwtAuthenticationService.isLoggedIn()" aria-current="page"
-            style="font-weight: 600;color: white;" routerLink="/vehicle">Vehicles</a>
+            style="font-weight: 600;color: white;" routerLink="/user/vehicle">Vehicles</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" *ngIf="jwtAuthenticationService.isLoggedIn()" aria-current="page"
@@ -70,7 +70,7 @@
               <i class="fa-solid fa-right-from-bracket"></i>  Logout </button>
           </li>
           <li class="nav-item float-end " style="margin-left: 10px;">
-            <button type="button" class="btn btn-info" *ngIf="jwtAuthenticationService.isLoggedIn()"  routerLink="/user/management">
+            <button type="button" class="btn btn-info" *ngIf="jwtAuthenticationService.isLoggedIn()"  routerLink="/user/profile">
               <i class="fa-solid fa-user"></i>  {{username}} </button>
           </li>
           <li class="nav-item float-end " style="margin-left: 10px;">

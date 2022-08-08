@@ -13,7 +13,7 @@
                 <input name="searchTerm" ngModel class="form-control mr-sm-2" type="search"
                 (ngModelChange)="searchVehicles(searchForm.value.searchTerm)" placeholder="Search Vehicles...">
             </form>
-            <button (click)="addVehicle()" style="margin-left: 5px;" type="button" class="btn btn-info" data-toggle="modal"
+            <button *ngIf="isSeller" (click)="addVehicle()" style="margin-left: 5px;" type="button" class="btn btn-info" data-toggle="modal"
                 data-target="#addUserModal">
                 <i class="fa fa-plus"></i>New Vehicle
             </button>
@@ -76,6 +76,11 @@
                         <div> Location : {{vehicle.location}}</div>
                         <div> Contact No : {{vehicle.contact}}</div>
                         <div> Posted Date : {{vehicle.addedDate | date | uppercase}}</div>
+                        <br>
+                        <div *ngIf="vehicle.vStatus==='approved'"> Status : <span class="bg bg-success" >Approved</span></div>
+                        <div *ngIf="vehicle.vStatus==='notApproved'"> Status : <span class="bg bg-danger" >Not Approved</span></div>
+                        <div *ngIf="vehicle.vStatus==='pending'"> Status : <span class="bg bg-warning" >Pending</span></div>
+
                     </div>
                     <div class="col-6">
                         <div class="row">
