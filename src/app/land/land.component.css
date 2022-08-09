@@ -1,31 +1,13 @@
 .mat-card{
-  background-color:rgb(70, 67, 67) ;
-  padding:5px ;
-  border-radius: 12px;
-}
-
- .mat-card{
-  padding:20px ;
-}
-
-.mat-card-content{
-  padding:15px ;
-}
-
-.Land-banner {
-  background-image: url("../../assets/images/today.jpg");
-  background-color: #cccccc;
-  height: 250px;
-  width: 100vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  text-align: start;
-  position: relative;
-}
-
-.Land-banner span {
-position: absolute;
-bottom: 0;
-left: 0;
-}
+    background-color:rgb(97, 94, 94) ;
+    padding:5px ;
+    border-radius: 12px;
+  }
+  
+   .mat-card{
+    padding:20px ;
+  }
+  
+  .mat-card-content{
+    padding:15px ;
+  }

@@ -6,6 +6,7 @@ import { LandDataServiceService} from '../service/data/land-data-service.service
 
 
 export class Land  {
+
   constructor( 
     public landId:number,
     public lname:string,
@@ -19,8 +20,7 @@ export class Land  {
     public lCondition:string,
     public accepted:boolean,
     public addedDate:Date,
-    public landImages: FileHandle[],
-    public photos: any[] = []
+    public landImages: FileHandle[]
   ){}
 
    }
@@ -81,21 +81,5 @@ export class LandComponent implements OnInit {
   addLand(){
     this.router.navigate(['land',-1]);
   }
-
-  public searchLand(searchTerm:string):void{
-    const results: Land[] = [];
-    for(const land of this.lands){
-      if(land.lname.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 
-          ){
-         results.push(land);
-         }
-    }
-    this.lands = results;
-    if( !searchTerm){
-      this.refreshLands();
-    }
-  }
-  
-  }
-
+}
 
