@@ -13,36 +13,73 @@
                         <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
                             <h4 style="text-align: center; font-weight: 600;">Register</h4>
                             <br>
-                            <div class="form-outline mb-4">
-                                <input type="text" name="firstName" #firstName="ngModel" ngModel class="form-control"
-                                    placeholder="First Name" required />
-                                <span class="help-block" style="color: red;"
-                                    *ngIf="firstName.invalid && firstName.touched">Please enter first name</span>
+                            <div class="form-group">
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="firstName" #firstName="ngModel" ngModel class="form-control"
+                                        placeholder="First Name" minlength="1" required />
+                                    <div class="help-block" style="color: red;" *ngIf="!firstName.dirty && firstName.touched; else elseBlock">
+                                        Please enter valid first name
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <div style="color: red;" *ngIf="firstName.errors?.minlength">First name invalid</div>
+                                    </ng-template>
+                                </div>
                             </div>
                             <div class="form-outline mb-4">
                                 <input type="text" name="lastName" #lastName="ngModel" ngModel class="form-control"
-                                    placeholder="Last Name" required />
-                                <span class="help-block" style="color: red;"
-                                    *ngIf="lastName.invalid && lastName.touched">Please enter last name</span>
+                                    placeholder="Last Name" minlength="1" required />
+                                    <div class="help-block" style="color: red;" *ngIf="!lastName.dirty && lastName.touched; else elseBlock">
+                                        Please enter valid last name
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <div style="color: red;" *ngIf="lastName.errors?.minlength">Last name invalid</div>
+                                    </ng-template>
                             </div>
                             <div class="form-outline mb-4">
                                 <input type="text" name="username" #username="ngModel" ngModel class="form-control"
-                                    placeholder="Username" required />
-                                <span class="help-block" style="color: red;"
-                                    *ngIf="username.invalid && username.touched">Please enter username</span>
+                                    placeholder="Username" minlength="3" required />
+                                    <div class="help-block" style="color: red;" *ngIf="username.dirty && username.invalid && username.touched; else elseBlock">
+                                        Please enter valid username
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <div style="color: red;" *ngIf="username.errors?.minlength">Username invalid</div>
+                                    </ng-template>
                             </div>
                             <div class="form-outline mb-4">
-                                <input type="email" name="email" #email="ngModel" ngModel class="form-control"
-                                    placeholder="Email" required />
-                                <span class="help-block" style="color: red;"
-                                    *ngIf="username.invalid && username.touched">Please enter valid email</span>
+                                <input type="email" email name="email" #email="ngModel" ngModel class="form-control"
+                                    placeholder="Email" minlength="4" required />
+                                    <div class="help-block" style="color: red;" *ngIf="email.dirty&& email.invalid && email.touched; else elseBlock">
+                                        Please enter valid email
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <div style="color: red;" *ngIf="email.errors?.email">Invalid email</div>
+                                    </ng-template>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-outline mb-4">
+
+                                <select name="role" required #role="ngModel" ngModel="ROLE_USER" class="form-control">
+                                    <option value="ROLE_USER">USER</option>
+                                    <option value="ROLE_SELLER">SELLER</option>
+                                </select>
+                                </div>
                             </div>
 
                             <div class="form-outline mb-3">
                                 <input type="password" name="password" #password="ngModel" ngModel class="form-control"
-                                    placeholder="Password" required />
-                                <span style="color: red;" *ngIf="password.invalid && password.touched">Please enter
-                                    password</span>
+                                    placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-zA-Z\d\s])).{9,}$"/>
+                                    <div class="help-block" style="color: red;" *ngIf="password.dirty && password.invalid && password.touched; else elseBlock">
+                                        Please enter valid password
+                                    </div>
+                                        <div style="color: red;" *ngIf="password.errors?.pattern && password.invalid && password.touched"> (Must contain 
+                                            <ol>
+                                                <li>Minimum eight characters</li>
+                                                <li>At least one uppercase letter</li>
+                                                <li>At least one lowercase letter</li>
+                                                <li>At least one number</li>
+                                                <li>At least one special character )</li>
+                                            </ol>
+                                        </div>
                             </div>
                             <!-- <div class="form-outline mb-3">
                             <input type="password" name="reTypePassword" #reTypePassword="ngModel" ngModel class="form-control"
@@ -52,7 +89,7 @@
                         </div> -->
 
                             <div class="text-center mt-4 pt-2" style="text-align: center;">
-                                <button type="submit" class="btn btn-secondary"
+                                <button type="submit" class="btn btn-info" [disabled]="!registerForm.form.valid"
                                     style="padding-left: 1.5rem; padding-right: 1.5rem;">Register</button>
                                 <p style="color: black;" class="small fw-bold mt-2 pt-1 mb-0">Already have an account?
                                     <a routerLink="/login" class="link-danger">Log In</a></p>

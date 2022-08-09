@@ -78,6 +78,10 @@ private getUserRole():string {
   return this.jwtAuthenticationService.getUserFromCache().role; 
 }
 
+public getUsername():string {
+  return this.jwtAuthenticationService.getUserFromCache().firstName; 
+}
+
 updateVehicle(vehicleId:any){
   console.log(`update ${vehicleId}`);
   this.router.navigate(['vehicle',vehicleId]);
@@ -88,7 +92,36 @@ public createStatusFormData(vehicle:Vehicle):FormData{
   formData.append('vStatus', vehicle.vStatus);
   return formData;
 }
-
+slideConfig = {
+  "slidesToShow": 3, 
+  "slidesToScroll": 1, 
+  "autoplay": true, 
+  "autoplaySpeed": 3000,
+  "infinite": true,
+  "responsive": [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+};
 updateStatus(statusForm: NgForm){
   const statusFormData = this.createStatusFormData(statusForm.value);
   console.log(statusForm.value)

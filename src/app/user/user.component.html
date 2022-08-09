@@ -23,14 +23,26 @@
 
     <nav style="--bs-breadcrumb-divider:'';--bs-breadcrumb-divider-color:gray-600;" aria-label="breadcrumb">
         <ol class="breadcrumb" style="padding: 5px;background-color: rgb(213, 209, 209);">
-            <li class="breadcrumb-item active">
-                <div style="margin: 10px;" class="nav nav-pills"><a class="nav-item nav-link"
+            <li class="breadcrumb-item">
+                <div style="margin: 10px;" class="nav nav-pills"><a class="nav-item nav-link active"
                         (click)="changeTitle('Users')" routerLink="/user/management"><i class="fa fa-users"></i> Users</a></div>
             </li>
             <li class="breadcrumb-item">
+                <div style="margin: 10px;" class="nav nav-pills"><a class="nav-item nav-link active"
+                        (click)="changeTitle('Vehicles')" routerLink="/admin/vehicle"><i class="fa-solid fa-car"></i> Vehicles</a></div>
+            </li>
+            <li class="breadcrumb-item">
+                <div style="margin: 10px;" class="nav nav-pills"><a class="nav-item nav-link active"
+                        (click)="changeTitle('Users')" routerLink="/sparepart"><i class="fas fa-cogs"></i> Spare parts</a></div>
+            </li>
+            <li class="breadcrumb-item">
+                <div style="margin: 10px;" class="nav nav-pills"><a class="nav-item nav-link active"
+                        (click)="changeTitle('Users')" routerLink="/land"><i class="fa-solid fa-building"></i> Lands</a></div>
+            </li>
+            <!-- <li class="breadcrumb-item">
                 <div style="margin: 10px;" class="nav nav-pills"><a class="nav-item nav-link "
                         (click)="changeTitle('Settings')" href="#myTabContent">Settings</a></div>
-            </li>
+            </li> -->
             <!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
 
             <!-- <li class="breadcrumb-item auto-ml">
@@ -132,8 +144,8 @@
                                             <div class="text-center text-sm-left mb-sm-0">
                                                 <h6 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{selectedUser?.firstName}}
                                                     {{selectedUser?.lastName}}</h6>
-                                                <p class="mb-1">{{selectedUser?.username}}</p>
-                                                <div class="">Status:
+                                                <p style="color: #000;" class="mb-1">@{{selectedUser?.username}}</p>
+                                                <div class=""><b style="color: #000;">Status: </b>
                                                     <span [hidden]="!selectedUser?.active"
                                                         class="badge rounded-pill bg-success">Active</span>
                                                     <span [hidden]="selectedUser?.active"
@@ -304,7 +316,7 @@
                                 </div>
                                 <div [hidden]="!isAdmin" class="form-group">
                                     <label>Role</label>
-                                    <select name="role" required [(ngModel)]="editUser.role" class="form-control">
+                                    <select name="role" [disabled]="!isAdmin" [(ngModel)]="editUser.role" class="form-control">
                                         <option value="ROLE_USER">USER</option>
                                         <option value="ROLE_SELLER">SELLER</option>
                                         <option value="ROLE_ADMIN">ADMIN</option>
@@ -312,20 +324,20 @@
                                 </div>
 
                                 <div class="input-group mb-3 mt-3">
-                                    <input (change)="onProfileImageChange($event)" type="file" class="form-control" id="inputGroupFile02">
+                                    <input (change)="onProfileImageChange($event)" accept="image/*" type="file" class="form-control" id="inputGroupFile02">
                                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                 </div>
-                                <fieldset [hidden]="!isAdmin" class="form-group">
+                                <fieldset [disabled]="!isAdmin"  class="form-group">
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input type="checkbox" name="active" [(ngModel)]="editUser.notLocked" class="form-check-input">
-                                            Active
+                                            Active <small [hidden]="isAdmin">(read only)</small>
                                         </label>
                                     </div>
                                     <div class="form-check disabled">
                                         <label class="form-check-label">
                                             <input type="checkbox" name="notLocked" [(ngModel)]="editUser.active" class="form-check-input">
-                                            Unlocked
+                                            Unlocked <small [hidden]="isAdmin">(read only)</small>
                                         </label>
                                     </div>
                                 </fieldset>

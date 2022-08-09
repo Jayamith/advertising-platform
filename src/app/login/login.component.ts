@@ -57,15 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           const token = response.headers.get(HeaderType.JWT_TOKEN);
           this.jwtAuthenticationService.saveToken(token!);
           this.jwtAuthenticationService.saveUserToLocalCache(response.body!);
-          if(this.isUser){
-            this.router.navigateByUrl('welcome');
-          }
-          if(this.isSeller){
-            this.router.navigateByUrl('vehicle');
-          }
-          if(this.isAdmin){
-            this.router.navigateByUrl('user/management');
-          }
+          window.location.reload();
+          this.router.navigateByUrl('welcome');         
         },
         (httpError:HttpErrorResponse) => {
           console.log(httpError);

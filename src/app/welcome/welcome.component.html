@@ -1,19 +1,27 @@
-<!-- <div style="text-align: center;font-size: 140px;" class="mt-5">
-    <span><b>Welcome!</b></span>
-</div> -->
-
-
-<div class="wrap">
-  <div class="container">
-    <h1 style="margin-top: 25px;font-family: 'Dancing Script', cursive; font-weight: 800;font-size: 100px;">Welcome!</h1>
+<div class="mt-5">
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+      <img src="{{ slide.img }}" alt="" width="100%">
+    </div>
+  </ngx-slick-carousel>
 </div>
 
-
-  <ngx-typed-js [strings]="['Vehicle Advertising!', 'Spare Part Advertising!' , 'Land Property Advertising!']"  [typeSpeed]="100">
+<!-- <button (click)="addSlide()">Add</button>
+    <button (click)="removeSlide()">Remove</button>
+    <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+    <button (click)="slickModal.unslick()">unslick</button> -->
+<div class="wrap">
+  <!-- <div class="container">
+    <h1 style="margin-top: 25px;font-family: 'Dancing Script', cursive; font-weight: 800;font-size: 100px;">Welcome!
+    </h1>
+  </div> -->
+  <ngx-typed-js [strings]="['Vehicle Advertising!', 'Spare Part Advertising!' , 'Land Property Advertising!']"
+    [typeSpeed]="100">
     <div class="container">
-        <!-- <h2 >We are an <span style="color: green;" class="typing"></span> advertising company!</h2> -->
-       <br>
-        <h2>A free advertising page for <span style="color: blue;" class="typing"></span></h2>
+      <!-- <h2 >We are an <span style="color: green;" class="typing"></span> advertising company!</h2> -->
+      <br>
+      <h2>A free advertising page for <span style="color: blue;" class="typing"></span></h2>
     </div>
   </ngx-typed-js>
   <div class="container">
@@ -26,7 +34,6 @@
   </ngx-typed-js> -->
   <div class="container">
     <!-- <button style="background-color: black;" mat-raised-button routerLink="/vehicle" >See Content</button> -->
-    <button routerLink="/vehicle" class="btn btn-secondary btn-xl page-scroll">Get Started</button>
+    <button routerLink="/user/vehicle" class="btn btn-secondary btn-xl page-scroll">Get Started</button>
   </div>
 </div>
-

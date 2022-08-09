@@ -1,5 +1,9 @@
+<div style="position: absolute;text-align: center;">
+  <h1 style="margin-left: 600px;margin-top: 20px; vertical-align: middle;" class="cursive">Simple, One Page Advertising</h1>
+
+</div>
 <section class="vh-100">
- <div class="card pt-5 pb-5" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+ <div class="card pb-5" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
@@ -34,7 +38,7 @@
             </div>
 
             <div class="text-center mt-4 pt-2" style="display: block;text-align: center;">
-              <button  type="submit" class="btn btn-secondary"
+              <button  type="submit" class="btn btn-info" [disabled]="!loginForm.form.valid"
                 style="padding-left: 1.5rem; padding-right: 1.5rem;">Login</button>
               <p style="color: black;" class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/register"
                   class="link-danger">Register</a></p>
