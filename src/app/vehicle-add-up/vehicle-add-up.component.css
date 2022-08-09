@@ -7,10 +7,10 @@
 }
 
 .mat-card{
-  /* background-image: url('../assets/images/car1.jpg'); */
+  background-image: url('https://cs.copart.com/v1/AUTH_svc.pdoc00001/HPX94/ca6947a2-62ca-4c8d-96bf-cc76899150a1.JPG');
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: rgb(100, 86, 86);
+  /* background-color: rgb(100, 86, 86); */
 
 }
 

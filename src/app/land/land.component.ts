@@ -20,7 +20,9 @@ export class Land  {
     public lCondition:string,
     public accepted:boolean,
     public addedDate:Date,
-    public landImages: FileHandle[]
+    public landImages: FileHandle[],
+    public photos: any[] = []
+
   ){}
 
    }
@@ -37,6 +39,7 @@ export class LandComponent implements OnInit {
   lands: Land[] = [];
 
   message: string | undefined;
+     imgUrl: any;
   
   constructor(
     private landService:  LandDataServiceService,
@@ -51,11 +54,35 @@ export class LandComponent implements OnInit {
   refreshLands(){
     this.landService.getAllLands().subscribe(
       response => {
-        console.log(response)
-        ;
-          this.lands = response;        
+        this.lands = response
+      //   for (var i = 0; response.length; i++) {
+      //     this.lands.push(response[i]);
+      //     this.getLandImages(this.lands);
+      // }       
       }
     )
+  }
+
+  // getLandImages(vland:any){
+  //   for(const item of vland){
+  //     for(var i = 0; i<item.landImages.length; i++){
+  //       this.imgUrl = 'data:image/png;base64,' + item.landImages[i].picByte;
+  //       item.photos.push(this.imgUrl);
+  //     }
+  //   }
+  // }
+  public searchLand(searchTerm:string):void{
+    const results: Land[] = [];
+    for(const land of this.lands){
+      if(land.lname.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 
+          ){
+         results.push(land);
+         }
+    }
+    this.lands = results;
+    if( !searchTerm){
+      this.refreshLands();
+    }
   }
 
   deleteLand(landId: any){
