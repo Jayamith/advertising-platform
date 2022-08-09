@@ -30,8 +30,7 @@ export class LandAddUpComponent implements OnInit {
     lCondition:'',
     accepted:false,
     addedDate:new Date(),
-    landImages: [],
-    photos: []
+    landImages: []
   
      }
      constructor(
