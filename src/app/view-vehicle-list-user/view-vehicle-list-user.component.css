@@ -90,7 +90,7 @@ margin: 0 0;
 }
 
 .event a.nav-item.nav-link.active {
-background: cyan !important;
+background: rgb(11, 133, 133) !important;
 color: #fff !important;
 }
 
@@ -124,7 +124,7 @@ transition: all 0.4s ease;
 -webkit-transition: all 0.4s ease;
 -moz-transition: all 0.4s ease;
 -ms-transition: all 0.4s ease;
-border-color: transparent cyan transparent transparent;
+border-color: transparent rgb(69, 228, 164) transparent transparent;
 }
 
 .event .tab-content {
