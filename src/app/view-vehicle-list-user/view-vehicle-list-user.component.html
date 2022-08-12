@@ -96,9 +96,154 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 ">
+                <nav class="wow fadeInDown  animated" data-animation="fadeInDown animated" data-delay=".2s" style="visibility: visible; animation-name: fadeInDown;">
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#one" role="tab" aria-selected="true">
+                        <div class="nav-content">
+                            <strong><i class="fa-solid fa-car"></i> Car</strong>
+                        </div>
+                    </a>
+                    
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#two" role="tab" aria-selected="false">
+                        <div class="nav-content">
+                            <strong><i class="fa-solid fa-bus"></i> Bus</strong>
+                        </div>
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#three" role="tab" aria-selected="false">
+                        <div class="nav-content">
+                            <strong><i class="fa-solid fa-van-shuttle"></i> Van</strong>
+                        </div>
+                    </a>
+                    <a class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab" href="#four" role="tab" aria-selected="false">
+                        <div class="nav-content">
+                            <strong><i class="fa-solid fa-truck"></i>Other</strong>
+                        </div>
+                    </a>
+                </div>
+            </nav>
                 <div class="tab-content py-3 px-3 px-sm-0 wow fadeInDown  animated" data-animation="fadeInDown animated"
                     data-delay=".2s" id="nav-tabContent" style="visibility: visible; animation-name: fadeInDown;">
                     <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div *ngFor="let vehicle of cars; index as i" class="row mb-30">
+                            <div class="col-lg-2">
+                                <div class="user">
+                                    <div class="title">
+                                        <div *ngFor="let v of vehicle.photos | slice:0:1; index as j">
+                                            <img style="border: 1px solid;" width="220px" height="180px" [src]="v">
+                                        </div>
+                                        <h5>{{vehicle.vname}}</h5>
+                                        <p>{{vehicle.vCondition}}</p>
+                                        <h6>Seller: {{vehicle.seller}}</h6>
+                                        <h6>Location: {{vehicle.location}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="event-list-content fix">
+                                    <ul data-animation="fadeInUp animated" data-delay=".2s"
+                                        style="animation-delay: 0.2s;" class="">
+                                        <li><b>Posted date :</b></li>
+                                        <li><b>{{vehicle.addedDate | date | uppercase}}</b></li>
+                                        <li *ngIf="vehicle.vStatus==='approved'"><b><span
+                                                    class="badge bg-success">Verified</span></b></li>
+                                        <li *ngIf="vehicle.vStatus==='notApproved'"><b><span class="badge bg-danger">Not
+                                                    Approved</span></b></li>
+                                        <li *ngIf="vehicle.vStatus==='pending'"><b><span
+                                                    class="badge bg-warning">Pending</span></b></li>
+                                    </ul>
+                                    <div class="text-center text-sm-right">
+                                    </div>
+                                    <h2>{{vehicle.model}} - Rs.{{vehicle.price}}</h2>
+                                    <p style="color: #000"><b>{{vehicle.moreInfo}}</b></p>
+                                    <a (click)="viewVehicle(vehicle.vehicleId)" class="btn mt-20">Read More</a>
+                                    <div class="crical"><i class="fa-solid fa-car"></i> </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade active show" id="two" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div *ngFor="let vehicle of buses; index as i" class="row mb-30">
+                            <div class="col-lg-2">
+                                <div class="user">
+                                    <div class="title">
+                                        <div *ngFor="let v of vehicle.photos | slice:0:1; index as j">
+                                            <img style="border: 1px solid;" width="220px" height="180px" [src]="v">
+                                        </div>
+                                        <h5>{{vehicle.vname}}</h5>
+                                        <p>{{vehicle.vCondition}}</p>
+                                        <h6>Seller: {{vehicle.seller}}</h6>
+                                        <h6>Location: {{vehicle.location}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="event-list-content fix">
+                                    <ul data-animation="fadeInUp animated" data-delay=".2s"
+                                        style="animation-delay: 0.2s;" class="">
+                                        <li><b>Posted date :</b></li>
+                                        <li><b>{{vehicle.addedDate | date | uppercase}}</b></li>
+                                        <li *ngIf="vehicle.vStatus==='approved'"><b><span
+                                                    class="badge bg-success">Verified</span></b></li>
+                                        <li *ngIf="vehicle.vStatus==='notApproved'"><b><span class="badge bg-danger">Not
+                                                    Approved</span></b></li>
+                                        <li *ngIf="vehicle.vStatus==='pending'"><b><span
+                                                    class="badge bg-warning">Pending</span></b></li>
+                                    </ul>
+                                    <div class="text-center text-sm-right">
+                                    </div>
+                                    <h2>{{vehicle.model}} - Rs.{{vehicle.price}}</h2>
+                                    <p style="color: #000"><b>{{vehicle.moreInfo}}</b></p>
+                                    <a (click)="viewVehicle(vehicle.vehicleId)" class="btn mt-20">Read More</a>
+                                    <div class="crical"><i class="fa-solid fa-bus"></i> </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade active show" id="three" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div *ngFor="let vehicle of vans; index as i" class="row mb-30">
+                            <div class="col-lg-2">
+                                <div class="user">
+                                    <div class="title">
+                                        <div *ngFor="let v of vehicle.photos | slice:0:1; index as j">
+                                            <img style="border: 1px solid;" width="220px" height="180px" [src]="v">
+                                        </div>
+                                        <h5>{{vehicle.vname}}</h5>
+                                        <p>{{vehicle.vCondition}}</p>
+                                        <h6>Seller: {{vehicle.seller}}</h6>
+                                        <h6>Location: {{vehicle.location}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="event-list-content fix">
+                                    <ul data-animation="fadeInUp animated" data-delay=".2s"
+                                        style="animation-delay: 0.2s;" class="">
+                                        <li><b>Posted date :</b></li>
+                                        <li><b>{{vehicle.addedDate | date | uppercase}}</b></li>
+                                        <li *ngIf="vehicle.vStatus==='approved'"><b><span
+                                                    class="badge bg-success">Verified</span></b></li>
+                                        <li *ngIf="vehicle.vStatus==='notApproved'"><b><span class="badge bg-danger">Not
+                                                    Approved</span></b></li>
+                                        <li *ngIf="vehicle.vStatus==='pending'"><b><span
+                                                    class="badge bg-warning">Pending</span></b></li>
+                                    </ul>
+                                    <div class="text-center text-sm-right">
+                                    </div>
+                                    <h2>{{vehicle.model}} - Rs.{{vehicle.price}}</h2>
+                                    <p style="color: #000"><b>{{vehicle.moreInfo}}</b></p>
+                                    <a (click)="viewVehicle(vehicle.vehicleId)" class="btn mt-20">Read More</a>
+                                    <div class="crical"><i class="fa-solid fa-van-shuttle"></i> </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade active show" id="four" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div *ngFor="let vehicle of vehicles; index as i" class="row mb-30">
                             <div class="col-lg-2">
                                 <div class="user">
@@ -128,10 +273,10 @@
                                     </ul>
                                     <div class="text-center text-sm-right">
                                     </div>
-                                    <h2>{{vehicle.vname}} - Rs.{{vehicle.price}}</h2>
+                                    <h2>{{vehicle.model}} - Rs.{{vehicle.price}}</h2>
                                     <p style="color: #000"><b>{{vehicle.moreInfo}}</b></p>
                                     <a (click)="viewVehicle(vehicle.vehicleId)" class="btn mt-20">Read More</a>
-                                    <div class="crical"><i class="fa-solid fa-car"></i> </div>
+                                    <div class="crical"><i class="fa-solid fa-truck"></i> </div>
                                 </div>
                             </div>
                             <hr>

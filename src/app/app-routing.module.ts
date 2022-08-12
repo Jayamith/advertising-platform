@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'user/management', component: UserComponent , canActivate:[AuthenticationGuard], data:{role:Role.ADMIN}},
   {path: 'vehicle', component: VehicleComponent},
   {path: 'user/vehicle', component: ViewVehicleListUserComponent},
-  {path: 'admin/vehicle', component: ViewVehicleListAdminComponent},
+  {path: 'admin/vehicle', component: ViewVehicleListAdminComponent, canActivate:[AuthenticationGuard]},
   {path: 'vehicle/view/:id', component: ViewVehicleComponent},
   {path: 'vehicle/:id', component: VehicleAddUpComponent},
   {path: 'sparepart', component: SparepartComponent},

@@ -13,6 +13,10 @@ import { Vehicle } from '../vehicle/vehicle.component';
 export class ViewVehicleListUserComponent implements OnInit {
 
   vehicles: Vehicle[] = [];
+  cars: Vehicle[] = [];
+  buses: Vehicle[] = [];
+  vans: Vehicle[] = [];
+
   message: string | undefined;
   temp: any[] = [];
   imgUrl: any;
@@ -33,8 +37,19 @@ export class ViewVehicleListUserComponent implements OnInit {
       response => {
         for (var i = 0; response.length; i++) {
           if (response[i].vStatus === 'approved') {
-            this.vehicles.push(response[i]);
-            this.getVehicleImages(this.vehicles);
+            if(response[i].vname === 'Car'){
+                this.cars.push(response[i]);
+                this.getVehicleImages(this.cars);
+            } else if(response[i].vname === 'Van'){
+                this.vans.push(response[i]);
+                this.getVehicleImages(this.vans);
+            } else if(response[i].vname === 'Bus'){
+                this.buses.push(response[i]);
+                this.getVehicleImages(this.buses);
+            } else {
+                this.vehicles.push(response[i]);
+                this.getVehicleImages(this.vehicles);
+            }
           }
         }
       }
@@ -52,6 +67,7 @@ export class ViewVehicleListUserComponent implements OnInit {
 
   public searchVehicles(searchTerm:string):void{
     const results: Vehicle[] = [];
+    // const allvehicles = this.cars.concat(this.vans,this.buses);
     for(const vehicle of this.vehicles){
       if(vehicle.vname.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || 
          vehicle.model.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
